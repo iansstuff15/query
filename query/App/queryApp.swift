@@ -65,6 +65,9 @@ struct queryApp: App {
         }
         .defaultSize(width: Theme.Layout.windowDefaultWidth, height: Theme.Layout.windowDefaultHeight)
         .defaultLaunchBehavior(.suppressed)
+        // Tests start from a clean slate. (Passing -ApplePersistenceIgnoreState instead stops
+        // SwiftUI from opening any window at launch.)
+        .restorationBehavior(options.isIsolated ? .disabled : .automatic)
         .commands {
             WorkspaceCommands()
             ConnectionTransferCommands()

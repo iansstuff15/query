@@ -10,4 +10,6 @@ struct SettingsScreen {
     }
 
     var matchingStrategy: XCUIElement { app.descendants(matching: .any)["settings.matchingStrategy"].firstMatch }
+    /// The first tab, Language.
+    var languagePicker: XCUIElement { app.descendants(matching: .any)["setup.languagePicker"].firstMatch }
 }

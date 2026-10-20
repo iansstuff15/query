@@ -211,7 +211,7 @@ final class SearchFlowUITests: XCTestCase {
     func testSettingsWindowOpens() {
         let welcome = launch()
         let settings = SettingsScreen.open(in: welcome.app)
-        XCTAssertTrue(settings.matchingStrategy.waitForExistence(timeout: WorkspaceScreen.timeout))
+        XCTAssertTrue(settings.languagePicker.waitForExistence(timeout: WorkspaceScreen.timeout))
     }
 
     func testMultipleWindows() {

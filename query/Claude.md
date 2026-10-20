@@ -94,7 +94,7 @@ Every feature or bug fix comes with tests at the right levels. A change is not d
 - Launch with `launchArguments`/`launchEnvironment` (e.g. `-UITesting`, `MOCK_API=1`) so the app uses deterministic stub data and an in-memory store.
 - Use Page Object helpers in `queryUITests/Screens` for reusable screen interactions.
 - Wait with `waitForExistence(timeout:)`, never fixed sleeps.
-- Clean up between tests: terminate the app and avoid relying on restored windows (pass `-ApplePersistenceIgnoreState YES` in `launchArguments`).
+- Clean up between tests: terminate the app and avoid relying on restored windows. `-UITesting` turns window restoration off. Don't pass `-ApplePersistenceIgnoreState`: it stops SwiftUI from opening any window at launch.
 - Include at least one accessibility audit (`try app.performAccessibilityAudit()`).
 
 ## Running Tests
