@@ -17,6 +17,8 @@ struct queryApp: App {
     private let cipher: any ConnectionCipher
     private let options = LaunchOptions.current
     private let flags = FeatureFlags.current
+    /// Open connections, for the Users & Permissions window.
+    private let registry = SessionRegistry()
 
     init() {
         cipher = AppEnvironment.makeCipher(credentials: credentials)
@@ -55,7 +57,7 @@ struct queryApp: App {
         WindowGroup(id: SceneID.main) {
             if let container {
                 RootView(
-                    factory: factory, credentials: credentials, cipher: cipher, clipboard: clipboard,
+                    factory: factory, credentials: credentials, cipher: cipher, clipboard: clipboard, registry: registry,
                     opensWhatsNewAutomatically: !options.isIsolated, alwaysOpensWhatsNew: flags.alwaysShowChangelog
                 )
                     .modelContainer(container)
@@ -73,6 +75,15 @@ struct queryApp: App {
             ConnectionTransferCommands()
             HelpCommands()
         }
+
+        WindowGroup(Text(L10n.usersWindowTitle), id: SceneID.users, for: UUID.self) { $sessionID in
+            UserManagementWindow(sessionID: sessionID, registry: registry)
+                .themed()
+                .localized()
+        }
+        .defaultSize(width: Theme.Layout.usersWindowDefaultWidth, height: Theme.Layout.usersWindowDefaultHeight)
+        // Its connection doesn't survive a relaunch.
+        .restorationBehavior(.disabled)
 
         Settings {
             SettingsView(switcher: credentials, flags: flags)

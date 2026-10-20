@@ -6,6 +6,23 @@ nonisolated extension String {
         "\"" + replacingOccurrences(of: "\"", with: "\"\"") + "\""
     }
 
+    /// A single-quoted PostgreSQL string literal (standard-conforming strings: `'` doubled,
+    /// backslashes literal), for statements that can't take bind parameters (CREATE ROLE).
+    var postgresStringLiteral: String {
+        "'" + replacingOccurrences(of: "'", with: "''") + "'"
+    }
+
+    /// A single-quoted MySQL / MariaDB string literal (`\` and `'` escaped), for statements that
+    /// can't take bind parameters (CREATE USER, GRANT).
+    var mySQLStringLiteral: String {
+        "'" + replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(of: "'", with: "''") + "'"
+    }
+
+    /// A MySQL / MariaDB backtick-quoted identifier.
+    var mySQLIdentifier: String {
+        "`" + replacingOccurrences(of: "`", with: "``") + "`"
+    }
+
     /// Escapes `\`, `%` and `_` so the text matches literally inside a LIKE pattern.
     var escapedLikePattern: String {
         var escaped = ""

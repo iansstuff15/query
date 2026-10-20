@@ -93,6 +93,7 @@ enum AccessibilityID {
         static let refresh = "toolbar.refresh"
         static let disconnect = "toolbar.disconnect"
         static let sqlConsole = "toolbar.sqlConsole"
+        static let manageUsers = "toolbar.manageUsers"
     }
 
     enum SQLConsole {
@@ -153,6 +154,32 @@ enum AccessibilityID {
         static func field(_ column: String) -> String { "row.field.\(column)" }
         static func null(_ column: String) -> String { "row.null.\(column)" }
         static func readOnly(_ column: String) -> String { "row.readOnly.\(column)" }
+    }
+
+    enum Users {
+        static let list = "users.list"
+        static let skeleton = "users.skeleton"
+        static let loadFailed = "users.loadFailed"
+        static let unavailable = "users.unavailable"
+        static let closed = "users.closed"
+        static let placeholder = "users.placeholder"
+        static let newUser = "users.new"
+        static let name = "users.name"
+        static let host = "users.host"
+        static let password = "users.password"
+        static let save = "users.save"
+        static let delete = "users.delete"
+        static let confirmDelete = "users.confirmDelete"
+        static let status = "users.status"
+        static let permissions = "users.permissions"
+        static let permissionsSkeleton = "users.permissionsSkeleton"
+        static let permissionsFailed = "users.permissionsFailed"
+        static let permissionsStatus = "users.permissionsStatus"
+        static let savePermissions = "users.savePermissions"
+        static let revertPermissions = "users.revertPermissions"
+        static func user(_ id: String) -> String { "users.user.\(id)" }
+        static func option(_ raw: String) -> String { "users.option.\(raw)" }
+        static func permission(_ privilege: String, _ target: String) -> String { "users.permission.\(target).\(privilege)" }
     }
 
     enum Setup {

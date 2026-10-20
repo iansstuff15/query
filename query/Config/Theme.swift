@@ -54,6 +54,12 @@ enum Theme {
         static let sqlEditorMinHeight: CGFloat = 120
         static let sqlBatchMaxHeight: CGFloat = 220
         static let changedDotSize: CGFloat = 6
+        static let usersWindowMinWidth: CGFloat = 860
+        static let usersWindowMinHeight: CGFloat = 520
+        static let usersWindowDefaultWidth: CGFloat = 1_040
+        static let usersWindowDefaultHeight: CGFloat = 680
+        static let userFormWidth: CGFloat = 340
+        static let permissionColumnWidth: CGFloat = 70
         static let selectedRowBorderWidth: CGFloat = 2
         static let dataGridMinColumnWidth: Double = 72
         static let dataGridMaxColumnWidth: Double = 360

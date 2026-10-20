@@ -1,7 +1,7 @@
 import Foundation
 
-/// The Row tab's Save, from idle to saved or failed.
-nonisolated enum RowSaveState: Equatable, Sendable {
+/// A Save (row, user or permissions), from idle to saved or failed.
+nonisolated enum SaveState: Equatable, Sendable {
     case idle
     case saving
     case saved

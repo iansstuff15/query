@@ -185,6 +185,63 @@ struct LiveEngineTests {
         }
     }
 
+    static var userCases: [Case] { activeCases.filter { [.postgreSQL, .mySQL].contains($0.engine) } }
+
+    /// Creates a user as the administrator, grants and revokes table permissions, checks the
+    /// new user can sign in and read, renames it, and drops it.
+    @Test(.enabled(if: !userCases.isEmpty), arguments: userCases)
+    func usersAndPermissionsRoundTrip(_ testCase: Case) async throws {
+        let factory = DefaultDatabaseClientFactory()
+        let adminName = testCase.engine == .mySQL ? "root" : "postgres"
+        let adminValues = testCase.values.merging([.username: adminName, .password: "AdminPass1"]) { $1 }
+        let admin = try #require(try factory.makeClient(for: ConnectionDraft(engine: testCase.engine, values: adminValues)) as? any UserManaging)
+        let name = "query_test_\(UInt32.random(in: 0...UInt32.max))"
+        let password = #"Te'mp\Pass1"#
+        let table = GrantTarget.table(schema: testCase.customers.schema, name: testCase.customers.name)
+        var current = name
+        do {
+            try await admin.createUser(UserDraft(name: name, host: "%", password: password, options: [.login]))
+            let created = try #require(try await admin.users().first { $0.name == name })
+            #expect(created.options.contains(.login))
+
+            try await admin.changeGrants(of: created, granting: [table: [.select, .update]], revoking: [:])
+            #expect(try await admin.grants(of: created)[table] == [.select, .update])
+            try await admin.changeGrants(of: created, granting: [:], revoking: [table: [.update]])
+            #expect(try await admin.grants(of: created)[table] == [.select])
+
+            // The new user signs in with the escaped password and can read the table.
+            let userValues = testCase.values.merging([.username: name, .password: password]) { $1 }
+            let asUser = try factory.makeClient(for: ConnectionDraft(engine: testCase.engine, values: userValues))
+            let columns = try await asUser.columns(of: testCase.customers)
+            #expect(try await asUser.rows(of: testCase.customers, columns: columns, rules: [], limit: 100).rows.count == 12)
+            await asUser.close()
+
+            try await admin.updateUser(created, to: UserDraft(name: name + "_r", host: "%", options: []))
+            current = name + "_r"
+            let renamed = try #require(try await admin.users().first { $0.name == current })
+            #expect(!renamed.options.contains(.login))
+            #expect(try await admin.grants(of: renamed)[table] == [.select])
+
+            try await admin.dropUser(renamed)
+            #expect(try await admin.users().contains { $0.name == current } == false)
+        } catch {
+            try? await admin.dropUser(DatabaseUser(name: current, host: testCase.engine == .mySQL ? "%" : nil, options: []))
+            await admin.close()
+            throw error
+        }
+        await admin.close()
+
+        // Without administrator rights the server refuses, with its message.
+        let reader = try #require(try client(testCase) as? any UserManaging)
+        do {
+            try await reader.createUser(UserDraft(name: name, host: "%", password: "x"))
+            Issue.record("query_reader shouldn't be able to create users")
+        } catch DatabaseError.statementFailed(let message) {
+            #expect(!message.isEmpty)
+        }
+        await reader.close()
+    }
+
     @Test(.enabled(if: enabled.contains(DatabaseEngine.redis.rawValue)))
     func redisKeysAndPatternFilters() async throws {
         let client = try DefaultDatabaseClientFactory().makeClient(for: ConnectionDraft(

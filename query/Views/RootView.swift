@@ -14,6 +14,8 @@ struct RootView: View {
     let credentials: any CredentialStore
     let cipher: any ConnectionCipher
     let clipboard: any ClipboardReading
+    /// Where this window's open connection is registered for other windows (Users & Permissions).
+    let registry: SessionRegistry
     /// Off under tests, so runs don't depend on what was seen last.
     let opensWhatsNewAutomatically: Bool
     /// `ALWAYS_SHOW_CHANGELOG`: open it at every launch.
@@ -21,13 +23,14 @@ struct RootView: View {
 
     init(
         factory: any DatabaseClientFactory, credentials: any CredentialStore, cipher: any ConnectionCipher, clipboard: any ClipboardReading,
-        changelog: any ChangelogProviding = BundleChangelogProvider(), opensWhatsNewAutomatically: Bool = false,
+        registry: SessionRegistry = SessionRegistry(), changelog: any ChangelogProviding = BundleChangelogProvider(), opensWhatsNewAutomatically: Bool = false,
         alwaysOpensWhatsNew: Bool = false
     ) {
         self.factory = factory
         self.credentials = credentials
         self.cipher = cipher
         self.clipboard = clipboard
+        self.registry = registry
         self.opensWhatsNewAutomatically = opensWhatsNewAutomatically
         self.alwaysOpensWhatsNew = alwaysOpensWhatsNew
         _whatsNew = State(initialValue: WhatsNewViewModel(provider: changelog))
@@ -53,6 +56,10 @@ struct RootView: View {
         }
         .frame(minWidth: Theme.Layout.windowMinWidth, minHeight: Theme.Layout.windowMinHeight)
         .onDisappear { Task { await model.disconnect() } }
+        .onChange(of: model.session?.id) { previous, current in
+            if let previous { registry.unregister(previous) }
+            if current != nil, let session = model.session { registry.register(session) }
+        }
         .sheet(isPresented: $isWhatsNewShown, onDismiss: markWhatsNewSeen) {
             WhatsNewView(model: whatsNew) { isWhatsNewShown = false }
         }

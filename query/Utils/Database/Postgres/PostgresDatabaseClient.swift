@@ -36,6 +36,11 @@ actor PostgresDatabaseClient: SQLExecuting {
         PostgresCatalogQueries.primaryKey(of: object)
     }
 
+    /// PostgreSQL and Greenplum roles; CockroachDB and Redshift have different role options.
+    nonisolated func userManagementSQL() -> (any UserManagementSQL)? {
+        flavor == .postgres || flavor == .greenplum ? PostgresUserSQL() : nil
+    }
+
     /// Redshift's catalog lacks the generated / identity columns, so it reports "unknown".
     nonisolated func editableColumnsStatement(of object: DatabaseObject) -> SQLStatement? {
         flavor == .redshift ? nil : PostgresCatalogQueries.editableColumns(of: object)

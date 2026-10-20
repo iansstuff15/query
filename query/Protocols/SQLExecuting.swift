@@ -5,7 +5,7 @@ import Foundation
 ///
 /// Catalog statements must return `[schema, name, kind]` rows (kind as a `pg_class.relkind`
 /// letter) and `[name, type]` column rows, all as text.
-nonisolated protocol SQLExecuting: SQLConsoleRunning, RowUpdating {
+nonisolated protocol SQLExecuting: SQLConsoleRunning, RowUpdating, UserManaging {
     var dialect: any SQLDialect { get }
     func execute(_ statement: SQLStatement) async throws -> [[String?]]
     func objectsStatement() -> SQLStatement
@@ -16,6 +16,8 @@ nonisolated protocol SQLExecuting: SQLConsoleRunning, RowUpdating {
     /// Catalog SQL returning the names of the columns the current user can update (`[name]`
     /// rows), or `nil` when the engine's catalog isn't supported.
     func editableColumnsStatement(of object: DatabaseObject) -> SQLStatement?
+    /// The engine's user and permission SQL, or `nil` when it isn't supported.
+    func userManagementSQL() -> (any UserManagementSQL)?
 }
 
 nonisolated extension SQLExecuting {
@@ -46,6 +48,56 @@ nonisolated extension SQLExecuting {
     func primaryKeyStatement(of object: DatabaseObject) -> SQLStatement? { nil }
 
     func editableColumnsStatement(of object: DatabaseObject) -> SQLStatement? { nil }
+
+    // MARK: - Users and permissions
+
+    func userManagementSQL() -> (any UserManagementSQL)? { nil }
+
+    var userManagement: UserManagementCapabilities? { userManagementSQL()?.capabilities }
+
+    func users() async throws -> [DatabaseUser] {
+        let sql = try requireUserManagementSQL()
+        return try await execute(sql.listUsers).compactMap(sql.user(from:))
+    }
+
+    func createUser(_ draft: UserDraft) async throws {
+        try await run(try requireUserManagementSQL().create(draft))
+    }
+
+    func updateUser(_ user: DatabaseUser, to draft: UserDraft) async throws {
+        try await run(try requireUserManagementSQL().update(user, to: draft))
+    }
+
+    func dropUser(_ user: DatabaseUser) async throws {
+        try await run(try requireUserManagementSQL().drop(user))
+    }
+
+    func grants(of user: DatabaseUser) async throws -> [GrantTarget: Set<TablePrivilege>] {
+        let sql = try requireUserManagementSQL()
+        return sql.grants(from: try await execute(sql.grantsStatement(of: user)))
+    }
+
+    func changeGrants(
+        of user: DatabaseUser, granting added: [GrantTarget: Set<TablePrivilege>], revoking removed: [GrantTarget: Set<TablePrivilege>]
+    ) async throws {
+        let sql = try requireUserManagementSQL()
+        // Revokes first, then grants, each in a stable order.
+        for (target, privileges) in removed.sorted(by: { $0.key < $1.key }) {
+            try await run(sql.revoke(privileges, on: target, from: user))
+        }
+        for (target, privileges) in added.sorted(by: { $0.key < $1.key }) {
+            try await run(sql.grant(privileges, on: target, to: user))
+        }
+    }
+
+    private func requireUserManagementSQL() throws -> any UserManagementSQL {
+        guard let sql = userManagementSQL() else { throw DatabaseError.unsupported }
+        return sql
+    }
+
+    private func run(_ statements: [SQLStatement]) async throws {
+        for statement in statements { _ = try await execute(statement) }
+    }
 
     func editableColumns(of object: DatabaseObject) async throws -> Set<String>? {
         guard canUpdateRows else { return [] }

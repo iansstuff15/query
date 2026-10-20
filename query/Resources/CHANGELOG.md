@@ -14,6 +14,16 @@ is a release, each `### emoji Heading` a category, and each `- item` a change. I
 | 🗑️ | Removed |
 | 🛠️ | Developer Tools |
 
+## [0.13.0] - 2026-10-21
+
+### ✨ New Features
+- **Users & Permissions** window (`⇧⌘U`, or the toolbar's people button) for the open connection: create, change and delete database users, and grant or revoke `SELECT`, `INSERT`, `UPDATE` and `DELETE` per schema and table. Saving permissions only grants and revokes what you changed.
+- On PostgreSQL, users have sign-in, superuser, create-database and manage-users options; deleting a user hands anything it owns to you first, so nothing is lost. On MySQL and MariaDB, accounts are `user@host` and sign-in locks or unlocks the account.
+- Managing users needs an administrator's login; if the server refuses, its message is shown.
+
+### 🛠️ Developer Tools
+- `ENABLE_USER_MANAGEMENT` in `query-Info.plist` turns the window on or off.
+
 ## [0.12.0] - 2026-10-21
 
 ### ✨ New Features

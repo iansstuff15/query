@@ -22,6 +22,14 @@ nonisolated enum DatabaseObjectKind: String, CaseIterable, Hashable, Sendable {
         }
     }
 
+    /// Tables and views whose rows can be granted to users (not collections, indexes or keyspaces).
+    var holdsRows: Bool {
+        switch self {
+        case .table, .partitionedTable, .view, .materializedView, .foreignTable: true
+        case .collection, .index, .keyspace: false
+        }
+    }
+
     var systemImage: String {
         switch self {
         case .table: "tablecells"

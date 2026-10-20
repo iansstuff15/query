@@ -27,6 +27,8 @@ nonisolated struct FeatureFlags: Equatable, Sendable {
     let themes: Bool
     /// `ENABLE_LANGUAGE_SETTING`: the Language step and Settings tab.
     let languageSetting: Bool
+    /// `ENABLE_USER_MANAGEMENT`: the Users & Permissions window.
+    let userManagement: Bool
 
     static let alwaysShowStartupConfigKey = "ALWAYS_SHOW_STARTUP_CONFIG"
     static let alwaysShowChangelogKey = "ALWAYS_SHOW_CHANGELOG"
@@ -44,6 +46,7 @@ nonisolated struct FeatureFlags: Equatable, Sendable {
         keychainStore = InfoPlist.bool("ENABLE_KEYCHAIN_STORE", default: true, info: info)
         themes = InfoPlist.bool("ENABLE_THEMES", default: true, info: info)
         languageSetting = InfoPlist.bool("ENABLE_LANGUAGE_SETTING", default: true, info: info)
+        userManagement = InfoPlist.bool("ENABLE_USER_MANAGEMENT", default: true, info: info)
     }
 
     static let current = FeatureFlags(infoDictionary: InfoPlist.main)

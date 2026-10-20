@@ -36,6 +36,12 @@ struct WorkspaceCommands: Commands {
             .keyboardShortcut("o", modifiers: .command)
             .disabled(actions?.canUseSQLConsole != true)
 
+            Button { actions?.manageUsers() } label: {
+                Label(L10n.manageUsers, systemImage: "person.2")
+            }
+            .keyboardShortcut("u", modifiers: [.command, .shift])
+            .disabled(actions?.canManageUsers != true)
+
             Divider()
 
             Button { actions?.goBack() } label: {

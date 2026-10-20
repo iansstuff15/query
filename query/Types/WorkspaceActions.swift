@@ -9,6 +9,8 @@ struct WorkspaceActions {
     let disconnect: () -> Void
     let toggleSQLConsole: () -> Void
     let openSQLFile: () -> Void
+    let manageUsers: () -> Void
+    let canManageUsers: Bool
     let goBack: () -> Void
     let goForward: () -> Void
     let closeTab: () -> Void

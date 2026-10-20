@@ -1,6 +1,34 @@
 {
   "sourceLanguage": "en",
   "strings": {
+    "%@ on %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ en %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ sur %@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ für %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$@の%1$@"
+          }
+        }
+      }
+    },
     "%lld changes": {
       "localizations": {
         "en": {
@@ -345,6 +373,34 @@
         }
       }
     },
+    "Adds a user to this database": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade un usuario a esta base de datos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoute un utilisateur à cette base de données"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fügt dieser Datenbank einen Benutzer hinzu"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このデータベースにユーザを追加します"
+          }
+        }
+      }
+    },
     "Adds connections from an export file (⇧⌘I)": {
       "localizations": {
         "es": {
@@ -537,6 +593,90 @@
           "stringUnit": {
             "state": "translated",
             "value": "接続できます"
+          }
+        }
+      }
+    },
+    "Can create and manage users": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puede crear y administrar usuarios"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peut créer et gérer des utilisateurs"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kann Benutzer erstellen und verwalten"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザを作成・管理できる"
+          }
+        }
+      }
+    },
+    "Can create databases": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puede crear bases de datos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peut créer des bases de données"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kann Datenbanken erstellen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "データベースを作成できる"
+          }
+        }
+      }
+    },
+    "Can sign in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puede iniciar sesión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Peut se connecter"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kann sich anmelden"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サインインできる"
           }
         }
       }
@@ -1269,6 +1409,34 @@
         }
       }
     },
+    "Connect as an administrator to manage users and permissions.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conéctate como administrador para gestionar usuarios y permisos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connectez-vous en tant qu’administrateur pour gérer les utilisateurs et les autorisations."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde dich als Administrator, um Benutzer und Berechtigungen zu verwalten."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザと権限を管理するには、管理者として接続してください。"
+          }
+        }
+      }
+    },
     "Connected — %lld objects found.": {
       "localizations": {
         "en": {
@@ -1381,6 +1549,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "接続中"
+          }
+        }
+      }
+    },
+    "Connection Closed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conexión cerrada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connexion fermée"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbindung geschlossen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接続が閉じられました"
           }
         }
       }
@@ -1609,6 +1805,34 @@
         }
       }
     },
+    "Couldn't List Users": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudieron listar los usuarios"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de lister les utilisateurs"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzer konnten nicht aufgelistet werden"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザを一覧表示できませんでした"
+          }
+        }
+      }
+    },
     "Couldn't connect with the saved details. Edit the connection to fix it.": {
       "localizations": {
         "es": {
@@ -1745,6 +1969,90 @@
           "stringUnit": {
             "state": "translated",
             "value": "行を保存できませんでした。"
+          }
+        }
+      }
+    },
+    "Create User": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear usuario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer l’utilisateur"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzer erstellen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザを作成"
+          }
+        }
+      }
+    },
+    "Create the user to set its permissions.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea el usuario para definir sus permisos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créez l’utilisateur pour définir ses autorisations."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erstelle den Benutzer, um seine Berechtigungen festzulegen."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "権限を設定するには、先にユーザを作成してください。"
+          }
+        }
+      }
+    },
+    "Create, change and delete users and their permissions (⇧⌘U)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea, cambia y elimina usuarios y sus permisos (⇧⌘U)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer, modifier et supprimer des utilisateurs et leurs autorisations (⇧⌘U)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzer und ihre Berechtigungen erstellen, ändern und löschen (⇧⌘U)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザとその権限を作成、変更、削除します（⇧⌘U）"
           }
         }
       }
@@ -1917,6 +2225,34 @@
         }
       }
     },
+    "Delete %@?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar %@?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer %@ ?"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ löschen?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@を削除しますか？"
+          }
+        }
+      }
+    },
     "Delete Connection": {
       "localizations": {
         "es": {
@@ -1941,6 +2277,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "接続を削除"
+          }
+        }
+      }
+    },
+    "Delete User": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar usuario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer l’utilisateur"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzer löschen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザを削除"
           }
         }
       }
@@ -2389,6 +2753,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "エンドポイント"
+          }
+        }
+      }
+    },
+    "Enter a name.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introduce un nombre."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisissez un nom."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gib einen Namen ein."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名前を入力してください。"
           }
         }
       }
@@ -3153,6 +3545,62 @@
         }
       }
     },
+    "Granted": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Concedido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accordé"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erteilt"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "付与済み"
+          }
+        }
+      }
+    },
+    "Grants and revokes the permissions you changed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Concede y revoca los permisos que cambiaste"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accorde et retire les autorisations modifiées"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erteilt und entzieht die geänderten Berechtigungen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "変更した権限を付与・取り消します"
+          }
+        }
+      }
+    },
     "Here's how query is set up. You can change both in Settings at any time.": {
       "localizations": {
         "es": {
@@ -3717,6 +4165,34 @@
         }
       }
     },
+    "Leave empty to keep the current password (or, for a new user, to set none)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déjalo vacío para conservar la contraseña actual (o, en un usuario nuevo, para no poner ninguna)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Laissez vide pour conserver le mot de passe actuel (ou, pour un nouvel utilisateur, n’en définir aucun)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leer lassen, um das aktuelle Passwort zu behalten (bei einem neuen Benutzer: kein Passwort)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "現在のパスワードを維持する場合は空欄のまま（新規ユーザの場合はパスワードなし）"
+          }
+        }
+      }
+    },
     "Loading": {
       "localizations": {
         "es": {
@@ -4053,6 +4529,62 @@
         }
       }
     },
+    "Names and passwords can't contain NUL characters.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los nombres y las contraseñas no pueden contener caracteres NUL."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les noms et mots de passe ne peuvent pas contenir de caractère NUL."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namen und Passwörter dürfen keine NUL-Zeichen enthalten."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名前とパスワードにNUL文字は使えません。"
+          }
+        }
+      }
+    },
+    "Names can be at most %lld characters.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los nombres pueden tener como máximo %lld caracteres."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les noms peuvent comporter au plus %lld caractères."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Namen dürfen höchstens %lld Zeichen lang sein."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名前は%lld文字以内にしてください。"
+          }
+        }
+      }
+    },
     "Neon Arcade": {
       "localizations": {
         "es": {
@@ -4133,6 +4665,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "新機能"
+          }
+        }
+      }
+    },
+    "New User": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevo usuario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouvel utilisateur"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Neuer Benutzer"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新規ユーザ"
           }
         }
       }
@@ -4389,6 +4949,34 @@
         }
       }
     },
+    "No User Selected": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún usuario seleccionado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun utilisateur sélectionné"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Benutzer ausgewählt"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザが選択されていません"
+          }
+        }
+      }
+    },
     "No primary key: Save matches the row on every column's original value.": {
       "localizations": {
         "es": {
@@ -4445,6 +5033,34 @@
         }
       }
     },
+    "None": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ninguna"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keins"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "なし"
+          }
+        }
+      }
+    },
     "Northern-lights green over a polar night. Always dark.": {
       "localizations": {
         "es": {
@@ -4473,6 +5089,34 @@
         }
       }
     },
+    "Not granted": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No concedido"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non accordé"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nicht erteilt"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未付与"
+          }
+        }
+      }
+    },
     "Nothing matches the current filters.": {
       "localizations": {
         "es": {
@@ -4497,6 +5141,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "現在のフィルタに一致する行はありません。"
+          }
+        }
+      }
+    },
+    "Object": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objeto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objet"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Objekt"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オブジェクト"
           }
         }
       }
@@ -4781,6 +5453,34 @@
         }
       }
     },
+    "Options": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Options"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Optionen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オプション"
+          }
+        }
+      }
+    },
     "Partitioned Table": {
       "localizations": {
         "es": {
@@ -4889,6 +5589,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "接続URLをペーストすると項目が入力されます"
+          }
+        }
+      }
+    },
+    "Permissions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permisos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorisations"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Berechtigungen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "権限"
           }
         }
       }
@@ -5565,6 +6293,34 @@
         }
       }
     },
+    "Reopen the connection to manage its users.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vuelve a abrir la conexión para administrar sus usuarios."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rouvrez la connexion pour gérer ses utilisateurs."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffne die Verbindung erneut, um ihre Benutzer zu verwalten."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザを管理するには、接続を開き直してください。"
+          }
+        }
+      }
+    },
     "Require (verify certificate)": {
       "localizations": {
         "es": {
@@ -6153,6 +6909,62 @@
         }
       }
     },
+    "Save Permissions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar permisos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer les autorisations"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Berechtigungen sichern"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "権限を保存"
+          }
+        }
+      }
+    },
+    "Save User": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar usuario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer l’utilisateur"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzer sichern"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザを保存"
+          }
+        }
+      }
+    },
     "Save matches the row by its primary key: %@": {
       "localizations": {
         "es": {
@@ -6317,6 +7129,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "接続せずにこの接続をこのMacに保存します"
+          }
+        }
+      }
+    },
+    "Saves this user's details (⌘S)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guarda los datos de este usuario (⌘S)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistre les informations de cet utilisateur (⌘S)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sichert die Daten dieses Benutzers (⌘S)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このユーザの詳細を保存します（⌘S）"
           }
         }
       }
@@ -6657,6 +7497,34 @@
         }
       }
     },
+    "Select a user, or create one with +.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecciona un usuario o crea uno con +."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionnez un utilisateur ou créez-en un avec +."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wähle einen Benutzer aus oder erstelle einen mit +."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザを選択するか、+で作成してください。"
+          }
+        }
+      }
+    },
     "Selects this row to edit it in the Row tab": {
       "localizations": {
         "es": {
@@ -6993,6 +7861,34 @@
         }
       }
     },
+    "Some tables": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algunas tablas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certaines tables"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einige Tabellen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一部のテーブル"
+          }
+        }
+      }
+    },
     "Starting…": {
       "localizations": {
         "es": {
@@ -7241,6 +8137,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "砂岩に夕焼けのアンバー。"
+          }
+        }
+      }
+    },
+    "Superuser (bypasses all permissions)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Superusuario (omite todos los permisos)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Superutilisateur (ignore toutes les autorisations)"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Superuser (umgeht alle Berechtigungen)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スーパーユーザ（すべての権限を無視）"
           }
         }
       }
@@ -7553,6 +8477,34 @@
         }
       }
     },
+    "The server didn't accept the change.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El servidor no aceptó el cambio."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le serveur n’a pas accepté la modification."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Server hat die Änderung nicht angenommen."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバが変更を受け付けませんでした。"
+          }
+        }
+      }
+    },
     "The server didn't say why. Check the SQL and your permissions, then try again.": {
       "localizations": {
         "es": {
@@ -7637,6 +8589,34 @@
         }
       }
     },
+    "The user and their permissions are removed from the database. This can't be undone.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El usuario y sus permisos se eliminan de la base de datos. No se puede deshacer."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L’utilisateur et ses autorisations sont supprimés de la base de données. Cette action est irréversible."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Der Benutzer und seine Berechtigungen werden aus der Datenbank entfernt. Das lässt sich nicht widerrufen."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザとその権限がデータベースから削除されます。この操作は取り消せません。"
+          }
+        }
+      }
+    },
     "This build doesn't include a changelog.": {
       "localizations": {
         "es": {
@@ -7689,6 +8669,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "このデータベースはSQLを使用しません。"
+          }
+        }
+      }
+    },
+    "This database's users can't be managed here.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los usuarios de esta base de datos no se pueden administrar aquí."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les utilisateurs de cette base de données ne peuvent pas être gérés ici."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Benutzer dieser Datenbank lassen sich hier nicht verwalten."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このデータベースのユーザはここでは管理できません。"
           }
         }
       }
@@ -7889,6 +8897,34 @@
         }
       }
     },
+    "Unchanged": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin cambios"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inchangé"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unverändert"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "変更しない"
+          }
+        }
+      }
+    },
     "Unlocking the connection vault…": {
       "localizations": {
         "es": {
@@ -7997,6 +9033,118 @@
           "stringUnit": {
             "state": "translated",
             "value": "ユーザ"
+          }
+        }
+      }
+    },
+    "User Details": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Datos del usuario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Informations sur l’utilisateur"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzerdaten"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザの詳細"
+          }
+        }
+      }
+    },
+    "User Management Isn't Available": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La administración de usuarios no está disponible"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La gestion des utilisateurs n’est pas disponible"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzerverwaltung ist nicht verfügbar"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザ管理は使用できません"
+          }
+        }
+      }
+    },
+    "Users & Permissions": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuarios y permisos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilisateurs et autorisations"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzer und Berechtigungen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザと権限"
+          }
+        }
+      }
+    },
+    "Users & Permissions…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuarios y permisos…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilisateurs et autorisations…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benutzer und Berechtigungen …"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザと権限…"
           }
         }
       }
@@ -8281,6 +9429,34 @@
         }
       }
     },
+    "What this user can do in each schema and table.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo que este usuario puede hacer en cada esquema y tabla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce que cet utilisateur peut faire dans chaque schéma et table."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Was dieser Benutzer in jedem Schema und jeder Tabelle tun darf."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "各スキーマとテーブルでこのユーザができること。"
+          }
+        }
+      }
+    },
     "What's New": {
       "localizations": {
         "es": {
@@ -8365,6 +9541,34 @@
         }
       }
     },
+    "Where the user can connect from; % means anywhere": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde dónde puede conectarse el usuario; % significa desde cualquier lugar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "D’où l’utilisateur peut se connecter ; % signifie n’importe où"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Von wo sich der Benutzer verbinden darf; % bedeutet überall"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ユーザが接続できる場所（%はどこからでも）"
+          }
+        }
+      }
+    },
     "You can only view this row: the connection can't change any of its fields.": {
       "localizations": {
         "es": {
@@ -8421,6 +9625,34 @@
         }
       }
     },
+    "all tables": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "todas las tablas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "toutes les tables"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "alle Tabellen"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "すべてのテーブル"
+          }
+        }
+      }
+    },
     "begins with": {
       "localizations": {
         "es": {
@@ -8445,6 +9677,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "で始まる"
+          }
+        }
+      }
+    },
+    "can't sign in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no puede iniciar sesión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ne peut pas se connecter"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kann sich nicht anmelden"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サインイン不可"
           }
         }
       }
@@ -8865,6 +10125,34 @@
           "stringUnit": {
             "state": "translated",
             "value": "query"
+          }
+        }
+      }
+    },
+    "superuser": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "superusuario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "superutilisateur"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Superuser"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スーパーユーザ"
           }
         }
       }

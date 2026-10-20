@@ -156,7 +156,7 @@ Follow [Conventional Commit Messages](https://gist.github.com/qoomon/5dfcdf8eec6
   - `build`: build tools, the Xcode project, dependencies (Swift packages), version.
   - `ops`: CI/CD (GitHub Actions), Docker test databases, scripts.
   - `chore`: everything else, such as `.gitignore`. The first commit is `chore: init`.
-- **Scopes** are optional and name the area changed: `app`, `welcome`, `connection`, `workspace`, `results`, `sql-editor`, `row-editor`, `setup`, `settings`, `whats-new`, `store`, `drivers`, `i18n`, `theme`, `docker`, `ci`. Never use issue numbers as scopes.
+- **Scopes** are optional and name the area changed: `app`, `welcome`, `connection`, `workspace`, `results`, `sql-editor`, `row-editor`, `setup`, `settings`, `whats-new`, `users`, `store`, `drivers`, `i18n`, `theme`, `docker`, `ci`. Never use issue numbers as scopes.
 - **Description**: required; imperative, present tense ("add", not "added" or "adds"); lowercase first letter; no period at the end. Read it as "This commit will …".
 - **Body**: optional; the motivation for the change and how behavior differs from before, also in the imperative.
 - **Footer**: optional; issue references (`Closes #123`). Breaking changes add `!` before the `:` (`feat(store)!: …`) and a footer starting with `BREAKING CHANGE:`.

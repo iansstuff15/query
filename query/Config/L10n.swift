@@ -417,4 +417,65 @@ enum L10n {
     static let languageSystem: LocalizedStringKey = "System Default"
     static let languageSystemDetail: LocalizedStringKey = "Uses the language order in System Settings."
     static let languageRelaunchNote: LocalizedStringKey = "Menus and a few labels switch after you restart query."
+
+    // Users & Permissions
+    static let usersWindowTitle: LocalizedStringKey = "Users & Permissions"
+    static let manageUsers: LocalizedStringKey = "Users & Permissions…"
+    static let manageUsersHelp: LocalizedStringKey = "Create, change and delete users and their permissions (⇧⌘U)"
+    static let newUser: LocalizedStringKey = "New User"
+    static let newUserHint: LocalizedStringKey = "Adds a user to this database"
+    static let deleteUser: LocalizedStringKey = "Delete User"
+    static let deleteUserConfirmDetail: LocalizedStringKey = "The user and their permissions are removed from the database. This can't be undone."
+    static let userDetails: LocalizedStringKey = "User Details"
+    static let userName: LocalizedStringKey = "Name"
+    static let userHost: LocalizedStringKey = "Host"
+    static let userHostHint: LocalizedStringKey = "Where the user can connect from; % means anywhere"
+    static let userPassword: LocalizedStringKey = "Password"
+    static let userPasswordKeep: LocalizedStringKey = "Unchanged"
+    static let userPasswordNew: LocalizedStringKey = "None"
+    static let userOptions: LocalizedStringKey = "Options"
+    static let userPasswordHint: LocalizedStringKey = "Leave empty to keep the current password (or, for a new user, to set none)"
+    static let createUser: LocalizedStringKey = "Create User"
+    static let saveUser: LocalizedStringKey = "Save User"
+    static let saveUserHint: LocalizedStringKey = "Saves this user's details (⌘S)"
+    static let userSaveFailed: LocalizedStringKey = "The server didn't accept the change."
+    static let permissions: LocalizedStringKey = "Permissions"
+    static let permissionsDetail: LocalizedStringKey = "What this user can do in each schema and table."
+    static let permissionsAfterCreate: LocalizedStringKey = "Create the user to set its permissions."
+    static let permissionsObject: LocalizedStringKey = "Object"
+    static let permissionsAllTables: LocalizedStringKey = "all tables"
+    static let savePermissions: LocalizedStringKey = "Save Permissions"
+    static let savePermissionsHint: LocalizedStringKey = "Grants and revokes the permissions you changed"
+    static let permissionGranted: LocalizedStringKey = "Granted"
+    static let permissionNotGranted: LocalizedStringKey = "Not granted"
+    static let permissionSomeTables: LocalizedStringKey = "Some tables"
+    static let userBadgeSuperuser: LocalizedStringKey = "superuser"
+    static let userBadgeNoLogin: LocalizedStringKey = "can't sign in"
+    static let noUserSelectedTitle: LocalizedStringKey = "No User Selected"
+    static let noUserSelectedDetail: LocalizedStringKey = "Select a user, or create one with +."
+    static let usersUnavailableTitle: LocalizedStringKey = "User Management Isn't Available"
+    static let usersUnavailableDetail: LocalizedStringKey = "This database's users can't be managed here."
+    static let usersLoadFailedTitle: LocalizedStringKey = "Couldn't List Users"
+    static let usersLoadFailedDetail: LocalizedStringKey = "Connect as an administrator to manage users and permissions."
+    static let connectionClosedTitle: LocalizedStringKey = "Connection Closed"
+    static let connectionClosedDetail: LocalizedStringKey = "Reopen the connection to manage its users."
+    static func deleteUserConfirmTitle(_ name: String) -> LocalizedStringKey { "Delete \(name)?" }
+    static func permissionLabel(_ privilege: String, _ target: String) -> LocalizedStringKey { "\(privilege) on \(target)" }
+
+    static func title(for option: UserOption) -> LocalizedStringKey {
+        switch option {
+        case .login: "Can sign in"
+        case .superuser: "Superuser (bypasses all permissions)"
+        case .createDatabases: "Can create databases"
+        case .createRoles: "Can create and manage users"
+        }
+    }
+
+    static func message(for error: UserManagementError) -> LocalizedStringKey {
+        switch error {
+        case .emptyName: "Enter a name."
+        case .nameTooLong(let maximum): "Names can be at most \(maximum) characters."
+        case .invalidCharacter: "Names and passwords can't contain NUL characters."
+        }
+    }
 }

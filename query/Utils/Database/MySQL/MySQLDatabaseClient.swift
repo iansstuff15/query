@@ -24,6 +24,7 @@ actor MySQLDatabaseClient: SQLExecuting {
     nonisolated func columnsStatement(of object: DatabaseObject) -> SQLStatement { MySQLCatalogQueries.columns(of: object) }
     nonisolated func primaryKeyStatement(of object: DatabaseObject) -> SQLStatement? { MySQLCatalogQueries.primaryKey(of: object) }
     nonisolated func editableColumnsStatement(of object: DatabaseObject) -> SQLStatement? { MySQLCatalogQueries.editableColumns(of: object) }
+    nonisolated func userManagementSQL() -> (any UserManagementSQL)? { MySQLUserSQL() }
 
     func execute(_ statement: SQLStatement) async throws -> [[String?]] {
         let connection = try await activeConnection()

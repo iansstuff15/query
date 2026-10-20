@@ -1,7 +1,7 @@
 import Foundation
 
 /// Deterministic in-memory client for previews and UI tests (`-UITesting`, `MOCK_DB`).
-nonisolated struct StubDatabaseClient: SQLConsoleRunning, RowUpdating {
+nonisolated struct StubDatabaseClient: SQLConsoleRunning, RowUpdating, UserManaging {
     let scenario: StubScenario
     let delay: Duration
 
@@ -41,6 +41,38 @@ nonisolated struct StubDatabaseClient: SQLConsoleRunning, RowUpdating {
 
     func primaryKey(of object: DatabaseObject) async throws -> [String] {
         SampleCatalog.columns(for: object).first.map { [$0.name] } ?? []
+    }
+
+    // MARK: - Users (sample data; changes aren't kept)
+
+    var userManagement: UserManagementCapabilities? { .postgres }
+
+    func users() async throws -> [DatabaseUser] {
+        try await simulateLatency()
+        guard scenario != .failing else { throw DatabaseError.statementFailed("permission denied to list roles") }
+        return [
+            DatabaseUser(name: "postgres", host: nil, options: Set(UserOption.allCases)),
+            DatabaseUser(name: "query_reader", host: nil, options: [.login]),
+            DatabaseUser(name: "query_writer", host: nil, options: [.login]),
+        ]
+    }
+
+    func createUser(_ draft: UserDraft) async throws { try await simulateLatency() }
+    func updateUser(_ user: DatabaseUser, to draft: UserDraft) async throws { try await simulateLatency() }
+    func dropUser(_ user: DatabaseUser) async throws { try await simulateLatency() }
+
+    func grants(of user: DatabaseUser) async throws -> [GrantTarget: Set<TablePrivilege>] {
+        try await simulateLatency()
+        guard user.name != "postgres" else { return [:] }
+        let tables = SampleCatalog.objects.filter { $0.schema == "public" }
+        let privileges: Set<TablePrivilege> = user.name == "query_writer" ? Set(TablePrivilege.allCases) : [.select]
+        return Dictionary(uniqueKeysWithValues: tables.map { (GrantTarget.table(schema: $0.schema, name: $0.name), privileges) })
+    }
+
+    func changeGrants(
+        of user: DatabaseUser, granting added: [GrantTarget: Set<TablePrivilege>], revoking removed: [GrantTarget: Set<TablePrivilege>]
+    ) async throws {
+        try await simulateLatency()
     }
 
     /// Every column but the key.

@@ -11,6 +11,7 @@ struct WorkspaceView: View {
     @SceneStorage("workspace.sql") private var storedSQL = ""
     @SceneStorage("workspace.sqlConsoleTab") private var consoleTab: SQLConsoleTab = .editor
     @State private var isImportingSQL = false
+    @Environment(\.openWindow) private var openWindow
     @AppStorage(SettingsKey.matchingStrategy) private var matchingStrategy: MatchingStrategy = .fuzzy
 
     private let session: ConnectionSession
@@ -145,6 +146,15 @@ struct WorkspaceView: View {
 
     private var canUseEditor: Bool { console.isSupported && flags.sqlConsole }
 
+    private var canManageUsers: Bool {
+        flags.userManagement && (session.client as? any UserManaging)?.userManagement != nil
+    }
+
+    private func manageUsers() {
+        guard canManageUsers else { return }
+        openWindow(id: SceneID.users, value: session.id)
+    }
+
     private func toggleConsole() {
         isConsoleShown.toggle()
     }
@@ -188,6 +198,14 @@ struct WorkspaceView: View {
         }
         ToolbarSpacer(.fixed)
         ToolbarItem {
+            Button(action: manageUsers) {
+                Label(L10n.manageUsers, systemImage: "person.2")
+            }
+            .disabled(!canManageUsers)
+            .help(L10n.manageUsersHelp)
+            .accessibilityIdentifier(AccessibilityID.Toolbar.manageUsers)
+        }
+        ToolbarItem {
             Button(action: toggleConsole) {
                 Label(L10n.sqlConsole, systemImage: "sidebar.right")
             }
@@ -206,6 +224,8 @@ struct WorkspaceView: View {
             disconnect: onDisconnect,
             toggleSQLConsole: toggleConsole,
             openSQLFile: openSQLFile,
+            manageUsers: manageUsers,
+            canManageUsers: canManageUsers,
             goBack: model.goBack,
             goForward: model.goForward,
             closeTab: { if let tab = model.activeTab { model.closeTab(tab) } },

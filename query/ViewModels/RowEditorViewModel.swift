@@ -13,7 +13,7 @@ final class RowEditorViewModel {
     /// The row's position in the grid, so a reload can refresh the same row.
     let rowID: ResultRow.ID
     var fields: [RowField]
-    private(set) var saveState: RowSaveState = .idle
+    private(set) var saveState: SaveState = .idle
     /// `nil` until loaded.
     private(set) var keyColumns: [String]?
     /// Columns the user can change; `nil` when unknown (everything is treated as editable).
