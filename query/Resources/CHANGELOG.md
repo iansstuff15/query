@@ -17,6 +17,7 @@ is a release, each `### emoji Heading` a category, and each `- item` a change. I
 ## [0.11.1] - 2026-10-21
 
 ### 🐛 Bug Fixes
+- SQL formatted across several lines runs as one statement again, so opening `docker/postgres/test-queries.sql` (or any formatted `.sql` file) no longer breaks queries apart at `FROM`, `WHERE` or `VALUES`. A line continues the statement above it when it's indented, starts with a clause such as `FROM` or `WHERE`, or follows a line ending in `,`, `(` or an operator; separate one-line statements still run on their own.
 - Clicking a row in a table now selects it reliably, and the selected row stays highlighted with an accent border even while you edit it in the Row tab. Arrow keys move the selection and `Esc` clears it.
 
 ## [0.11.0] - 2026-10-21

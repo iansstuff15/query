@@ -69,7 +69,7 @@ struct SQLConsoleViewModelTests {
     @Test func rerunningTheSameQueryReusesItsResult() async {
         let model = console(MockSQLClient(), text: "SELECT 1")
         await model.runAll()
-        model.text = "select 9\n  SELECT   1  "
+        model.text = "select 9\nSELECT   1  "
         await model.run([model.statements[1]].map(\.sql))
         #expect(model.resultOrder == ["SELECT 1"])
         #expect(model.focusRequest?.resultID == "SELECT 1")
