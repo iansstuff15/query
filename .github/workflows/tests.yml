@@ -1,0 +1,97 @@
+# Runs the Unit and Integration test plans on every push to main and every pull request.
+#
+# Locally with act (https://github.com/nektos/act): macOS jobs can't run in Docker, so run the
+# test job on this Mac and the Linux job in Docker:
+#   act -j test -P macos-26=-self-hosted
+#   act -j fixtures
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  fixtures:
+    name: Test fixtures match docker/
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare the SQL test scripts with their copies in the test fixtures
+        run: |
+          cmp docker/postgres/test-queries.sql queryTests/Fixtures/postgres-test-queries.sql
+          cmp docker/mysql/test-queries.sql queryTests/Fixtures/mysql-test-queries.sql
+
+  test:
+    name: Unit and integration tests
+    # The app targets macOS 26.5, so tests need a macOS 26 runner and Xcode 26.
+    runs-on: macos-26
+    timeout-minutes: 60
+    env:
+      # Swift packages with macros and build plugins can't be approved interactively in CI.
+      XCODEBUILD_FLAGS: >-
+        -project query.xcodeproj
+        -scheme query
+        -destination platform=macOS
+        -derivedDataPath DerivedData
+        -skipMacroValidation
+        -skipPackagePluginValidation
+        -quiet
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select the newest Xcode 26
+        # act runs this job on the host Mac, which already has its Xcode selected (and
+        # `sudo` would ask for a password).
+        if: ${{ !env.ACT }}
+        run: |
+          xcode="$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)"
+          echo "Using $xcode"
+          sudo xcode-select --switch "$xcode/Contents/Developer"
+
+      - name: Show versions
+        run: |
+          sw_vers
+          xcodebuild -version
+
+      - name: Cache Swift packages
+        if: ${{ !env.ACT }}
+        uses: actions/cache@v4
+        with:
+          path: DerivedData/SourcePackages
+          key: spm-${{ runner.os }}-${{ hashFiles('query.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: spm-${{ runner.os }}-
+
+      - name: Resolve Swift packages
+        run: xcodebuild -resolvePackageDependencies $XCODEBUILD_FLAGS
+
+      - name: Build for testing
+        run: xcodebuild build-for-testing $XCODEBUILD_FLAGS
+
+      - name: Unit tests
+        run: >-
+          xcodebuild test-without-building $XCODEBUILD_FLAGS
+          -testPlan Unit
+          -resultBundlePath test-results/Unit.xcresult
+
+      - name: Integration tests
+        run: >-
+          xcodebuild test-without-building $XCODEBUILD_FLAGS
+          -testPlan Integration
+          -resultBundlePath test-results/Integration.xcresult
+
+      - name: Upload test results
+        if: ${{ failure() && !env.ACT }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: test-results/
+          retention-days: 7

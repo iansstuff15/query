@@ -48,3 +48,17 @@ Don't edit the `seed.sql` files directly, because the script overwrites them.
 
 See [`docker/README.md`](docker/README.md) for the other engines (MariaDB, SQL Server, Oracle,
 MongoDB and more).
+
+## Continuous integration
+
+`.github/workflows/tests.yml` runs the Unit and Integration test plans on a macOS 26 runner for
+every push to `main` and every pull request, and checks that the SQL test scripts copied into
+`queryTests/Fixtures` still match `docker/`. Live database tests are opt-in and don't run in CI.
+
+To run the workflow locally with [act](https://github.com/nektos/act) (macOS jobs run on this
+Mac rather than in Docker):
+
+```sh
+act -j test -P macos-26=-self-hosted
+act -j fixtures
+```
