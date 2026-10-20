@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ALWAYS_SHOW_STARTUP_CONFIG</key>
+	<true/>
+	<key>ALWAYS_SHOW_CHANGELOG</key>
+	<true/>
+	<key>ENABLE_SQL_CONSOLE</key>
+	<true/>
+	<key>ENABLE_SQL_HISTORY</key>
+	<true/>
+	<key>ENABLE_SQL_AUTOCOMPLETE</key>
+	<true/>
+	<key>ENABLE_SQL_SYNTAX_HIGHLIGHTING</key>
+	<true/>
+	<key>ENABLE_ROW_EDITING</key>
+	<true/>
+	<key>ENABLE_CLIPBOARD_CONNECTION_STRINGS</key>
+	<true/>
+	<key>ENABLE_CONNECTION_HEALTH_CHECKS</key>
+	<true/>
+	<key>ENABLE_KEYCHAIN_STORE</key>
+	<true/>
+	<key>ENABLE_THEMES</key>
+	<true/>
+	<key>ENABLE_LANGUAGE_SETTING</key>
+	<true/>
+	<key>ROW_LIMIT</key>
+	<integer>300</integer>
+	<key>OPEN_ANYTHING_RESULT_LIMIT</key>
+	<integer>50</integer>
+	<key>SPLASH_MINIMUM_MILLISECONDS</key>
+	<integer>1400</integer>
+	<key>CONNECTION_CHECK_TIMEOUT_SECONDS</key>
+	<integer>5</integer>
+	<key>SQL_HISTORY_LIMIT</key>
+	<integer>200</integer>
+	<key>SQL_COMPLETION_LIMIT</key>
+	<integer>40</integer>
+	<key>SQL_FILE_MAX_MEGABYTES</key>
+	<integer>5</integer>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,41 @@
+{
+  "configurations": [
+    {
+      "id": "5545A93A-0394-5011-AF4B-A31839205867",
+      "name": "Default",
+      "options": {}
+    }
+  ],
+  "defaultOptions": {
+    "codeCoverage": {
+      "targets": [
+        {
+          "containerPath": "container:query.xcodeproj",
+          "identifier": "DF0594CA3082916F005BE760",
+          "name": "query"
+        }
+      ]
+    },
+    "targetForVariableExpansion": {
+      "containerPath": "container:query.xcodeproj",
+      "identifier": "DF0594CA3082916F005BE760",
+      "name": "query"
+    },
+    "testTimeoutsEnabled": true
+  },
+  "testTargets": [
+    {
+      "selectedTags": {
+        "tags": [
+          "integration"
+        ]
+      },
+      "target": {
+        "containerPath": "container:query.xcodeproj",
+        "identifier": "AA0000000000000000000050",
+        "name": "queryTests"
+      }
+    }
+  ],
+  "version": 1
+}
