@@ -16,6 +16,7 @@ struct EditorHeaderView: View {
             jumpBar
             Divider()
         }
+        .solidBarBackground()
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier(AccessibilityID.Editor.header)
     }

@@ -5,11 +5,17 @@ import SwiftUI
 struct SQLResultsView: View {
     /// `nil` once the result was discarded (its tab is closing).
     let result: SQLQueryResult?
+    /// Rows can be selected to highlight them; editing happens in table tabs.
+    @State private var selection: ResultRow.ID?
 
     var body: some View {
-        content
-            .safeAreaBar(edge: .bottom) { footer }
-            .navigationTitle(Text(L10n.queryResults))
+        VStack(spacing: 0) {
+            content
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .clipped()
+            footer
+        }
+        .navigationTitle(Text(L10n.queryResults))
     }
 
     @ViewBuilder
@@ -28,7 +34,7 @@ struct SQLResultsView: View {
                 message: L10n.sqlNoRowsDetail, identifier: AccessibilityID.SQLConsole.placeholder
             )
         case .loaded(let rows):
-            ResultsTable(result: rows, identifier: AccessibilityID.SQLConsole.results)
+            DataGrid(result: rows, selection: $selection, identifier: AccessibilityID.SQLConsole.results)
         case .failed:
             FallbackStateView(
                 title: L10n.sqlFailedTitle, systemImage: "exclamationmark.triangle",
@@ -52,7 +58,7 @@ struct SQLResultsView: View {
             }
             .font(Theme.Typography.footer)
             .foregroundStyle(.secondary)
-            .barStyle()
+            .barStyle(divider: .top)
             .accessibilityElement(children: .combine)
             .accessibilityIdentifier(AccessibilityID.SQLConsole.resultFooter)
         }

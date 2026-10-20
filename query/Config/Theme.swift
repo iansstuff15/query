@@ -96,6 +96,8 @@ enum Theme {
         static let rowSelection = Color.accentColor
         static let splashTop = Color(.splashTop)
         static let splashBottom = Color(.splashBottom)
+        /// The system window color, behind bars when the theme has no surface of its own.
+        static let windowBackground = Color(nsColor: .windowBackgroundColor)
         static let statusSuccess = Color(.statusSuccess)
         static let statusFailure = Color(.statusFailure)
 

@@ -7,25 +7,28 @@ struct TableDetailView: View {
     @Environment(\.featureFlags) private var flags
 
     var body: some View {
-        // Bars sit in the safe area so the grid scrolls beneath them with the system scroll
-        // edge effect (Liquid Glass) instead of a custom opaque background.
-        content
-            .safeAreaBar(edge: .top) {
-                if model.isFilterBarShown {
-                    FilterBar(
-                        rules: $model.rules,
-                        columns: model.columns,
-                        preview: model.previewText,
-                        onApply: { Task { await model.applyFilters() } },
-                        onAdd: model.addRule,
-                        onClear: { Task { await model.clearFilters() } },
-                        onClone: model.duplicateRule,
-                        onRemove: model.removeRule
-                    )
-                    .transition(Motion.filterBar)
-                }
+        // Solid bars stacked around the grid rather than `safeAreaBar`s: the system's scroll
+        // edge effect drew over the rows, made the bars see-through and took their clicks.
+        VStack(spacing: 0) {
+            if model.isFilterBarShown {
+                FilterBar(
+                    rules: $model.rules,
+                    columns: model.columns,
+                    preview: model.previewText,
+                    onApply: { Task { await model.applyFilters() } },
+                    onAdd: model.addRule,
+                    onClear: { Task { await model.clearFilters() } },
+                    onClone: model.duplicateRule,
+                    onRemove: model.removeRule
+                )
+                .transition(Motion.filterBar)
+                .zIndex(1)
             }
-            .safeAreaBar(edge: .bottom) { footer }
+            content
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .clipped()
+            footer
+        }
         .animation(Motion.animation(Motion.reveal, reduceMotion: reduceMotion), value: model.isFilterBarShown)
         .navigationTitle(Text(verbatim: model.object.name))
         .navigationSubtitle(Text(verbatim: model.object.schema))
@@ -57,7 +60,7 @@ struct TableDetailView: View {
         Text(L10n.rowCount(model.rowCount))
             .font(Theme.Typography.footer)
             .foregroundStyle(.secondary)
-            .barStyle()
+            .barStyle(divider: .top)
             .accessibilityIdentifier(AccessibilityID.Detail.rowCount)
     }
 }

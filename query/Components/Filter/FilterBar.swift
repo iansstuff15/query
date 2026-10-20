@@ -62,7 +62,7 @@ struct FilterBar: View {
                 .accessibilityIdentifier(AccessibilityID.Filter.apply)
             }
         }
-        .barStyle()
+        .barStyle(divider: .bottom)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier(AccessibilityID.Filter.bar)
     }

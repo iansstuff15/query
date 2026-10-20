@@ -31,6 +31,12 @@ struct SQLEditor: NSViewRepresentable {
         scrollView.autohidesScrollers = true
         scrollView.drawsBackground = false
         scrollView.borderType = .noBorder
+        // Stay inside the editor's section: no automatic insets that reach under the tab bar or
+        // footer, and nothing (text, gutter) drawn past the scroll view's edges.
+        scrollView.automaticallyAdjustsContentInsets = false
+        scrollView.contentInsets = NSEdgeInsets()
+        scrollView.clipsToBounds = true
+        scrollView.contentView.clipsToBounds = true
 
         let size = scrollView.contentSize
         let textView = SQLTextView(frame: NSRect(origin: .zero, size: size))
@@ -73,6 +79,7 @@ struct SQLEditor: NSViewRepresentable {
         }
 
         let gutter = SQLGutterView(textView: textView, scrollView: scrollView)
+        gutter.clipsToBounds = true
         gutter.onRun = { [weak coordinator = context.coordinator] statement in
             coordinator?.run([statement])
         }

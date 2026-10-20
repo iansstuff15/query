@@ -1,9 +1,10 @@
 import AppKit
 import SwiftUI
 
-/// A table's rows as a grid where each row is clickable and the selected one stays highlighted
-/// (accent tint and border) even when another panel has focus, unlike `Table`, whose unfocused
-/// selection is a faint gray. Arrow keys move the selection; Esc clears it.
+/// Rows as a grid where each row is a button: click one to select it, and the selected row stays
+/// highlighted (accent tint and border) even when another panel has focus, unlike `Table`, whose
+/// unfocused selection is a faint gray. After a click, arrow keys move the selection and Esc
+/// clears it.
 struct DataGrid: View {
     let result: QueryResult
     @Binding var selection: ResultRow.ID?
@@ -21,12 +22,16 @@ struct DataGrid: View {
                 LazyVStack(alignment: .leading, spacing: 0, pinnedViews: [.sectionHeaders]) {
                     Section {
                         ForEach(result.rows) { row in
-                            DataGridRow(
-                                row: row, columns: result.columns, widths: widths,
-                                isSelected: row.id == selection, isHovered: row.id == hoveredRowID
-                            )
+                            // A button, so a click always selects (no gesture recognition to
+                            // compete with scrolling or focus).
+                            Button { select(row.id) } label: {
+                                DataGridRow(
+                                    row: row, columns: result.columns, widths: widths,
+                                    isSelected: row.id == selection, isHovered: row.id == hoveredRowID
+                                )
+                            }
+                            .buttonStyle(.plain)
                             .id(row.id)
-                            .onTapGesture { select(row.id) }
                             .onHover { inside in
                                 if inside { hoveredRowID = row.id } else if hoveredRowID == row.id { hoveredRowID = nil }
                             }
@@ -42,7 +47,8 @@ struct DataGrid: View {
                 }
                 .padding(.horizontal, Theme.Spacing.xs)
             }
-            .focusable()
+            // Focus only for keyboard input, so clicks go to the rows instead of focusing the grid.
+            .focusable(interactions: .edit)
             .focused($isFocused)
             .focusEffectDisabled()
             .onKeyPress(.downArrow) { move(by: 1, proxy: proxy) }
@@ -67,7 +73,7 @@ struct DataGrid: View {
             }
         }
         .padding(.vertical, Theme.Spacing.xs)
-        .background(.bar)
+        .solidBarBackground()
         .overlay(alignment: .bottom) { Divider() }
         .accessibilityAddTraits(.isHeader)
     }

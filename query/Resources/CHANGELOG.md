@@ -14,6 +14,17 @@ is a release, each `### emoji Heading` a category, and each `- item` a change. I
 | 🗑️ | Removed |
 | 🛠️ | Developer Tools |
 
+## [0.11.2] - 2026-10-21
+
+### 🐛 Bug Fixes
+- Rows in a table can be clicked to select them again. A system effect drawn over the grid hid rows from clicks; the grid's header and footer are now ordinary solid bars.
+- Query results can be selected too, with the same highlight.
+- The SQL editor stays inside its own section instead of running under the tabs and the Run All bar.
+
+### 🎨 UI Changes
+- The right panel's Editor / History / Row tabs always stay on top.
+- The center panel's tab bar, filter bar, column headers and row count have solid backgrounds in the theme's window color, so text behind them never shows through.
+
 ## [0.11.1] - 2026-10-21
 
 ### 🐛 Bug Fixes

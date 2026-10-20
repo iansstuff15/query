@@ -23,30 +23,17 @@ struct SQLConsoleView: View {
         Group {
             if model.isSupported {
                 VStack(spacing: 0) {
+                    // Always on top: drawn above the tab's content, which can't reach under it.
                     if tabs.count > 1 {
                         tabPicker
-                        Divider()
+                            .frame(maxWidth: .infinity)
+                            .solidBarBackground()
+                            .overlay(alignment: .bottom) { Divider() }
+                            .zIndex(1)
                     }
-                    switch tab {
-                    case .editor:
-                        editor
-                        Divider()
-                        runBar
-                        Divider()
-                        summary
-                    case .history:
-                        historyList
-                    case .row:
-                        if let rowEditor {
-                            RowEditorView(model: rowEditor)
-                                .id(ObjectIdentifier(rowEditor))
-                        } else {
-                            FallbackStateView(
-                                title: L10n.selectRowTitle, systemImage: "tablecells",
-                                message: L10n.selectRowDetail, identifier: AccessibilityID.RowEditor.empty
-                            )
-                        }
-                    }
+                    tabContent
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .clipped()
                 }
             } else {
                 FallbackStateView(
@@ -57,6 +44,39 @@ struct SQLConsoleView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier(AccessibilityID.SQLConsole.panel)
+    }
+
+    @ViewBuilder
+    private var tabContent: some View {
+        switch tab {
+        case .editor:
+            VStack(spacing: 0) {
+                // The editor gets the space left over and never draws outside it.
+                editor
+                    .frame(maxHeight: .infinity)
+                    .clipped()
+                VStack(spacing: 0) {
+                    Divider()
+                    runBar
+                    Divider()
+                    summary
+                }
+                .solidBarBackground()
+                .zIndex(1)
+            }
+        case .history:
+            historyList
+        case .row:
+            if let rowEditor {
+                RowEditorView(model: rowEditor)
+                    .id(ObjectIdentifier(rowEditor))
+            } else {
+                FallbackStateView(
+                    title: L10n.selectRowTitle, systemImage: "tablecells",
+                    message: L10n.selectRowDetail, identifier: AccessibilityID.RowEditor.empty
+                )
+            }
+        }
     }
 
     private var tabPicker: some View {
@@ -85,24 +105,24 @@ struct SQLConsoleView: View {
                 message: L10n.sqlHistoryEmptyDetail, identifier: AccessibilityID.SQLConsole.historyEmpty
             )
         } else {
-            List {
-                ForEach(Array(model.history.enumerated()), id: \.element.id) { index, item in
-                    SQLHistoryRow(
-                        item: item, isRunDisabled: model.isRunning, identifier: AccessibilityID.SQLConsole.historyItem(index),
-                        onRun: { Task { await model.run(item) } },
-                        onEdit: {
-                            model.edit(item)
-                            tab = .editor
-                        },
-                        onDelete: { model.deleteHistory(item) }
-                    )
-                    .listRowInsets(EdgeInsets())
+            VStack(spacing: 0) {
+                List {
+                    ForEach(Array(model.history.enumerated()), id: \.element.id) { index, item in
+                        SQLHistoryRow(
+                            item: item, isRunDisabled: model.isRunning, identifier: AccessibilityID.SQLConsole.historyItem(index),
+                            onRun: { Task { await model.run(item) } },
+                            onEdit: {
+                                model.edit(item)
+                                tab = .editor
+                            },
+                            onDelete: { model.deleteHistory(item) }
+                        )
+                        .listRowInsets(EdgeInsets())
+                    }
                 }
-            }
-            .listStyle(.inset)
-            .scrollContentBackground(.hidden)
-            .accessibilityIdentifier(AccessibilityID.SQLConsole.history)
-            .safeAreaBar(edge: .bottom) {
+                .listStyle(.inset)
+                .scrollContentBackground(.hidden)
+                .accessibilityIdentifier(AccessibilityID.SQLConsole.history)
                 HStack {
                     Spacer()
                     Button(role: .destructive, action: model.clearHistory) {
@@ -113,7 +133,7 @@ struct SQLConsoleView: View {
                     .accessibilityHint(L10n.clearHistoryHint)
                     .accessibilityIdentifier(AccessibilityID.SQLConsole.clearHistory)
                 }
-                .barStyle()
+                .barStyle(divider: .top)
             }
         }
     }

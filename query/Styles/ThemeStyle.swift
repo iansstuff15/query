@@ -11,6 +11,7 @@ struct ThemeStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .tint(ThemeCatalog.accent(for: theme))
+            .environment(\.barBackground, ThemeCatalog.surface(for: theme) ?? Theme.Palette.windowBackground)
             .preferredColorScheme(ThemeCatalog.appearance(for: theme))
             .containerBackground(for: .window) {
                 if let surface = ThemeCatalog.surface(for: theme) {

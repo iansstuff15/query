@@ -34,14 +34,18 @@ struct WorkspaceView: View {
             SidebarView(model: model)
                 .navigationSplitViewColumnWidth(min: Theme.Layout.sidebarMinWidth, ideal: Theme.Layout.sidebarIdealWidth)
         } detail: {
-            centerPanel
-                // The overlay sits inside the header's safe area, so the bar is right under it.
-                .overlay(alignment: .top) {
-                    LoadingBar(isActive: isLoading, identifier: AccessibilityID.Detail.loadingBar)
-                }
-                .safeAreaBar(edge: .top) {
-                    EditorHeaderView(model: model, session: session)
-                }
+            // The header is a solid bar above the panel (not a `safeAreaBar`, whose scroll edge
+            // effect drew over the rows), with the loading bar right under it.
+            VStack(spacing: 0) {
+                EditorHeaderView(model: model, session: session)
+                    .zIndex(1)
+                centerPanel
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .clipped()
+                    .overlay(alignment: .top) {
+                        LoadingBar(isActive: isLoading, identifier: AccessibilityID.Detail.loadingBar)
+                    }
+            }
         }
         .inspector(isPresented: consoleShown) {
             SQLConsoleView(
