@@ -1,0 +1,19 @@
+{
+  "resultSetMetaData": {
+    "numRows": 2,
+    "format": "jsonv2",
+    "partitionInfo": [{ "rowCount": 2, "uncompressedSize": 120 }],
+    "rowType": [
+      { "name": "TO_VARCHAR(\"ID\")", "type": "text", "nullable": true },
+      { "name": "TO_VARCHAR(\"COUNTRY\")", "type": "text", "nullable": true }
+    ]
+  },
+  "data": [["1", "GB"], ["7", null]],
+  "code": "090001",
+  "statementStatusUrl": "/api/v2/statements/01b2c3d4-0000-0000-0000-000000000001?requestId=abc",
+  "requestId": "abc",
+  "sqlState": "00000",
+  "statementHandle": "01b2c3d4-0000-0000-0000-000000000001",
+  "message": "Statement executed successfully.",
+  "createdOn": 1760659200000
+}

@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result": [
+    {
+      "success": true,
+      "meta": { "duration": 0.3 },
+      "results": {
+        "columns": ["CAST(\"id\" AS TEXT)", "CAST(\"email\" AS TEXT)", "CAST(\"country\" AS TEXT)"],
+        "rows": [["1", "ada.lovelace@example.com", "GB"], ["7", "dennis.ritchie@example.com", null], [12, "frances.allen@mail.test", "US"]]
+      }
+    }
+  ]
+}

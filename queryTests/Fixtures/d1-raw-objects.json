@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result": [
+    {
+      "success": true,
+      "meta": { "served_by": "v3-prod", "duration": 0.21, "rows_read": 7, "rows_written": 0 },
+      "results": {
+        "columns": ["'main'", "name", "CASE type WHEN 'view' THEN 'v' ELSE 'r' END"],
+        "rows": [["main", "customers", "r"], ["main", "orderLineSummary", "v"], ["main", "orders", "r"]]
+      }
+    }
+  ]
+}
