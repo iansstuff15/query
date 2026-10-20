@@ -163,6 +163,9 @@ struct LiveEngineTests {
         }
         let key = try await writer.primaryKey(of: testCase.customers)
         #expect(key == ["id"])
+        // The writer may change every column; the read-only user none.
+        #expect(try await writer.editableColumns(of: testCase.customers)?.contains("country") == true)
+        #expect(try await reader.editableColumns(of: testCase.customers) == [])
         let country = try #require(columns.firstIndex { $0.name == "country" })
 
         let original = try await row()

@@ -43,6 +43,11 @@ nonisolated struct StubDatabaseClient: SQLConsoleRunning, RowUpdating {
         SampleCatalog.columns(for: object).first.map { [$0.name] } ?? []
     }
 
+    /// Every column but the key.
+    func editableColumns(of object: DatabaseObject) async throws -> Set<String>? {
+        Set(SampleCatalog.columns(for: object).dropFirst().map(\.name))
+    }
+
     /// Accepts every edit (nothing is stored).
     func update(_ change: RowChange) async throws {
         try await simulateLatency()

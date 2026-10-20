@@ -36,6 +36,11 @@ actor PostgresDatabaseClient: SQLExecuting {
         PostgresCatalogQueries.primaryKey(of: object)
     }
 
+    /// Redshift's catalog lacks the generated / identity columns, so it reports "unknown".
+    nonisolated func editableColumnsStatement(of object: DatabaseObject) -> SQLStatement? {
+        flavor == .redshift ? nil : PostgresCatalogQueries.editableColumns(of: object)
+    }
+
     func columns(of object: DatabaseObject) async throws -> [ColumnInfo] {
         try await execute(columnsStatement(of: object)).compactMap { row in
             guard row.count >= 2, let name = row[0] else { return nil }

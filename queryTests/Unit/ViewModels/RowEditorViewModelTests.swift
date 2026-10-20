@@ -75,4 +75,36 @@ struct RowEditorViewModelTests {
         #expect(model.fields[1].original == "GB")
         #expect(!model.hasChanges)
     }
+
+    // MARK: - Read-only fields
+
+    @Test func fieldsTheUserCantChangeAreReadOnlyAndKeepTheirValue() async {
+        let updater = MockRowUpdater(editable: ["country"])
+        let model = RowEditorViewModel(object: object, columns: columns, row: row, client: updater)
+        await model.loadKey()
+        #expect(!model.isEditable(model.fields[0]))
+        #expect(model.isEditable(model.fields[1]))
+        #expect(model.canEditAnything)
+        model.setNull(true, for: 0) // ignored: read-only
+        #expect(model.fields[0].value == "7")
+        model.fields[0].text = "8" // a read-only field's text never counts as a change
+        #expect(!model.hasChanges)
+        model.setNull(false, for: 1)
+        model.fields[1].text = "GB"
+        await model.save()
+        #expect(await updater.changes.first?.values == ["7", "GB"])
+    }
+
+    @Test func nothingEditableMeansViewOnly() async {
+        let model = RowEditorViewModel(object: object, columns: columns, row: row, client: MockRowUpdater(editable: []))
+        await model.loadKey()
+        #expect(model.canEdit)
+        #expect(!model.canEditAnything)
+    }
+
+    @Test func unknownEditabilityKeepsEveryFieldEditable() async {
+        let model = RowEditorViewModel(object: object, columns: columns, row: row, client: MockRowUpdater(editable: nil))
+        await model.loadKey()
+        #expect(model.fields.allSatisfy(model.isEditable))
+    }
 }

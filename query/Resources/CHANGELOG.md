@@ -16,6 +16,9 @@ is a release, each `### emoji Heading` a category, and each `- item` a change. I
 
 ## [0.12.0] - 2026-10-21
 
+### ✨ New Features
+- The **Row** tab only offers input fields for values you can change. Generated columns, always-generated identities and columns your user has no UPDATE permission on are shown as plain read-only text with a lock (PostgreSQL, MySQL and MariaDB). When nothing in a row can be changed, Save and Revert are hidden.
+
 ### 🐛 Bug Fixes
 - Table and query results fill the center panel again, starting at the top left, instead of sitting compressed in the middle. Spare width is shared among the columns.
 

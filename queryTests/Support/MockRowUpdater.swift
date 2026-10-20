@@ -4,19 +4,25 @@
 actor MockRowUpdater: RowUpdating {
     nonisolated let canUpdateRows: Bool
     let key: [String]
+    let editable: Set<String>?
     let failure: String?
     private(set) var changes: [RowChange] = []
     private(set) var keyLookups = 0
 
-    init(canUpdateRows: Bool = true, key: [String] = ["id"], failure: String? = nil) {
+    init(canUpdateRows: Bool = true, key: [String] = ["id"], editable: Set<String>? = nil, failure: String? = nil) {
         self.canUpdateRows = canUpdateRows
         self.key = key
+        self.editable = editable
         self.failure = failure
     }
 
     func primaryKey(of object: DatabaseObject) async throws -> [String] {
         keyLookups += 1
         return key
+    }
+
+    func editableColumns(of object: DatabaseObject) async throws -> Set<String>? {
+        editable
     }
 
     func update(_ change: RowChange) async throws {

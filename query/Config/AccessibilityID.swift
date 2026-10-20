@@ -152,6 +152,7 @@ enum AccessibilityID {
         static let status = "row.status"
         static func field(_ column: String) -> String { "row.field.\(column)" }
         static func null(_ column: String) -> String { "row.null.\(column)" }
+        static func readOnly(_ column: String) -> String { "row.readOnly.\(column)" }
     }
 
     enum Setup {

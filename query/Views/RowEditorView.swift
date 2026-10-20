@@ -13,15 +13,17 @@ struct RowEditorView: View {
                 VStack(alignment: .leading, spacing: Theme.Spacing.m) {
                     ForEach($model.fields) { $field in
                         RowFieldEditor(
-                            field: $field, isKey: model.keyColumns?.contains(field.column.name) == true, isEditable: model.canEdit,
+                            field: $field, isKey: model.keyColumns?.contains(field.column.name) == true, isEditable: model.isEditable(field),
                             onNullChange: { model.setNull($0, for: field.id) }
                         )
                     }
                 }
                 .padding(Theme.Spacing.m)
             }
-            Divider()
-            footer
+            if model.canEditAnything {
+                Divider()
+                footer
+            }
         }
         .task(id: model.rowID) { await model.loadKey() }
         .accessibilityElement(children: .contain)
@@ -36,7 +38,7 @@ struct RowEditorView: View {
                 Image(systemName: model.object.kind.systemImage).foregroundStyle(.tint)
             }
             Group {
-                if !model.canEdit {
+                if !model.canEditAnything {
                     Text(L10n.rowReadOnly)
                 } else if let keys = model.keyColumns {
                     Text(keys.isEmpty ? L10n.rowMatchedByAll : L10n.rowMatchedByKey(keys.joined(separator: ", ")))

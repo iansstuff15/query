@@ -49,6 +49,22 @@ nonisolated enum PostgresCatalogQueries {
         )
     }
 
+    /// Columns the current user can update: updatable, not generated, not an identity that's
+    /// always generated, and with UPDATE privilege. (Materialized views have no rows here, so
+    /// nothing in them is editable.)
+    static func editableColumns(of object: DatabaseObject) -> SQLStatement {
+        SQLStatement(
+            sql: """
+                SELECT CAST(column_name AS text)
+                FROM information_schema.columns
+                WHERE table_schema = $1 AND table_name = $2
+                  AND is_updatable = 'YES' AND is_generated = 'NEVER' AND COALESCE(identity_generation, '') <> 'ALWAYS'
+                  AND has_column_privilege(quote_ident($1) || '.' || quote_ident($2), CAST(column_name AS text), 'UPDATE')
+                """,
+            bindings: [object.schema, object.name]
+        )
+    }
+
     static func columns(of object: DatabaseObject, flavor: PostgresFlavor) -> SQLStatement {
         let bindings = [object.schema, object.name]
         switch flavor {

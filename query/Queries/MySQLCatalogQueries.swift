@@ -19,6 +19,24 @@ nonisolated enum MySQLCatalogQueries {
         )
     }
 
+    /// Columns the current user can update: not virtual or stored generated, granted UPDATE
+    /// (`PRIVILEGES` lists the current user's), and not in a view that can't be updated.
+    static func editableColumns(of object: DatabaseObject) -> SQLStatement {
+        SQLStatement(
+            sql: """
+                SELECT c.COLUMN_NAME FROM information_schema.COLUMNS c
+                WHERE c.TABLE_SCHEMA = ? AND c.TABLE_NAME = ?
+                  AND c.EXTRA NOT LIKE '%VIRTUAL GENERATED%' AND c.EXTRA NOT LIKE '%STORED GENERATED%'
+                  AND FIND_IN_SET('update', c.PRIVILEGES) > 0
+                  AND NOT EXISTS (
+                    SELECT 1 FROM information_schema.VIEWS v
+                    WHERE v.TABLE_SCHEMA = c.TABLE_SCHEMA AND v.TABLE_NAME = c.TABLE_NAME AND v.IS_UPDATABLE = 'NO'
+                  )
+                """,
+            bindings: [object.schema, object.name]
+        )
+    }
+
     static func columns(of object: DatabaseObject) -> SQLStatement {
         SQLStatement(
             sql: """

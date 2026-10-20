@@ -13,6 +13,9 @@ nonisolated protocol SQLExecuting: SQLConsoleRunning, RowUpdating {
     /// Catalog SQL returning the primary-key column names (`[name]` rows, in key order), or
     /// `nil` when the engine's catalog isn't supported.
     func primaryKeyStatement(of object: DatabaseObject) -> SQLStatement?
+    /// Catalog SQL returning the names of the columns the current user can update (`[name]`
+    /// rows), or `nil` when the engine's catalog isn't supported.
+    func editableColumnsStatement(of object: DatabaseObject) -> SQLStatement?
 }
 
 nonisolated extension SQLExecuting {
@@ -41,6 +44,14 @@ nonisolated extension SQLExecuting {
     }
 
     func primaryKeyStatement(of object: DatabaseObject) -> SQLStatement? { nil }
+
+    func editableColumnsStatement(of object: DatabaseObject) -> SQLStatement? { nil }
+
+    func editableColumns(of object: DatabaseObject) async throws -> Set<String>? {
+        guard canUpdateRows else { return [] }
+        guard let statement = editableColumnsStatement(of: object) else { return nil }
+        return Set(try await execute(statement).compactMap { $0.first ?? nil })
+    }
 
     var canUpdateRows: Bool { dialect.supportsRowUpdates }
 
