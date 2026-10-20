@@ -14,6 +14,11 @@ is a release, each `### emoji Heading` a category, and each `- item` a change. I
 | 🗑️ | Removed |
 | 🛠️ | Developer Tools |
 
+## [0.11.1] - 2026-10-21
+
+### 🐛 Bug Fixes
+- Clicking a row in a table now selects it reliably, and the selected row stays highlighted with an accent border even while you edit it in the Row tab. Arrow keys move the selection and `Esc` clears it.
+
 ## [0.11.0] - 2026-10-21
 
 ### ✨ New Features

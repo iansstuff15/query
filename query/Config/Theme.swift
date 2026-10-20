@@ -54,6 +54,9 @@ enum Theme {
         static let sqlEditorMinHeight: CGFloat = 120
         static let sqlBatchMaxHeight: CGFloat = 220
         static let changedDotSize: CGFloat = 6
+        static let selectedRowBorderWidth: CGFloat = 2
+        static let dataGridMinColumnWidth: Double = 72
+        static let dataGridMaxColumnWidth: Double = 360
         static let connectionSheetWidth: CGFloat = 520
         static let connectionSheetMinHeight: CGFloat = 420
         static let jsonEditorHeight: CGFloat = 90
@@ -79,6 +82,11 @@ enum Theme {
         static let splashTitle: Font = .system(.largeTitle, design: .rounded).weight(.heavy)
         static let splashArtwork: Font = .system(size: 260)
         static let splashCheck: Font = .caption
+    }
+
+    enum Opacity {
+        /// The accent tint behind a selected grid row.
+        static let selectedRow = 0.18
     }
 
     enum Palette {

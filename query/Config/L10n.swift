@@ -394,6 +394,7 @@ enum L10n {
     static let selectRowDetail: LocalizedStringKey = "Select a row in a table to see and edit its values here."
     static let rowSave: LocalizedStringKey = "Save"
     static let rowSaveHint: LocalizedStringKey = "Updates this row in the database (⌘S)"
+    static let rowSelectHint: LocalizedStringKey = "Selects this row to edit it in the Row tab"
     static let rowRevert: LocalizedStringKey = "Revert"
     static let rowRevertHint: LocalizedStringKey = "Puts back the values from the database"
     static let rowSaved: LocalizedStringKey = "Saved"

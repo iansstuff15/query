@@ -6629,6 +6629,34 @@
         }
       }
     },
+    "Selects this row to edit it in the Row tab": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecciona esta fila para editarla en la pestaña Fila"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sélectionne cette ligne pour la modifier dans l’onglet Ligne"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wählt diese Zeile aus, um sie im Tab „Zeile“ zu bearbeiten"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この行を選択して「行」タブで編集します"
+          }
+        }
+      }
+    },
     "Service Account Key": {
       "localizations": {
         "es": {

@@ -38,8 +38,13 @@ struct TableDetailView: View {
         case .idle, .loading:
             SkeletonTable(identifier: AccessibilityID.Detail.skeleton)
         case .loaded(let result) where !result.isEmpty:
-            // Rows are selectable only when they can be edited in the Row tab.
-            ResultsTable(result: result, selection: flags.rowEditing ? $model.selectedRowID : nil)
+            // Rows are selectable (and get the selection-friendly grid) only when they can be
+            // edited in the Row tab.
+            if flags.rowEditing {
+                DataGrid(result: result, selection: $model.selectedRowID)
+            } else {
+                ResultsTable(result: result)
+            }
         case .loaded, .failed:
             FallbackStateView(
                 title: L10n.noRows, systemImage: "line.3.horizontal.decrease.circle",
