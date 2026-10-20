@@ -1,0 +1,17 @@
+# libSQL server (sqld) — http://localhost:18080 (no auth token in this local setup)
+name: query-libsql
+services:
+  libsql:
+    image: ghcr.io/tursodatabase/libsql-server:latest
+    ports: ["18080:8080"]
+    healthcheck:
+      test: ["CMD", "bash", "-c", "exec 3<>/dev/tcp/127.0.0.1/8080"]
+      interval: 2s
+      retries: 30
+  seed:
+    image: python:3.12-alpine
+    depends_on:
+      libsql: { condition: service_healthy }
+    volumes: ["./seed.sql:/seed.sql:ro", "../tools/hrana_seed.py:/hrana_seed.py:ro"]
+    entrypoint: ["python3", "/hrana_seed.py", "http://libsql:8080", "/seed.sql"]
+    restart: "no"

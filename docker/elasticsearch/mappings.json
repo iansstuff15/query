@@ -1,0 +1,62 @@
+{
+  "customers": {
+    "properties": {
+      "email": {
+        "type": "keyword"
+      },
+      "full_name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "country": {
+        "type": "keyword"
+      },
+      "created_at": {
+        "type": "date"
+      }
+    }
+  },
+  "products": {
+    "properties": {
+      "sku": {
+        "type": "keyword"
+      },
+      "name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "price": {
+        "type": "scaled_float",
+        "scaling_factor": 100
+      },
+      "in_stock": {
+        "type": "boolean"
+      }
+    }
+  },
+  "orders": {
+    "properties": {
+      "customer_id": {
+        "type": "integer"
+      },
+      "status": {
+        "type": "keyword"
+      },
+      "total": {
+        "type": "scaled_float",
+        "scaling_factor": 100
+      },
+      "ordered_at": {
+        "type": "date"
+      }
+    }
+  }
+}

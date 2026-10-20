@@ -1,0 +1,19 @@
+# Vertica 9.1 (JetBrains test image, amd64 → runs under Rosetta) — vertica://dbadmin@localhost:55434/testdb
+name: query-vertica
+services:
+  vertica:
+    image: datagrip/vertica:9.1.1
+    platform: linux/amd64
+    ports: ["55434:5433"]
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/vertica/bin/vsql -U dbadmin -d testdb -c 'select 1'"]
+      interval: 5s
+      retries: 60
+  seed:
+    image: datagrip/vertica:9.1.1
+    platform: linux/amd64
+    depends_on:
+      vertica: { condition: service_healthy }
+    volumes: ["./seed.sql:/seed.sql:ro"]
+    entrypoint: ["/opt/vertica/bin/vsql", "-h", "vertica", "-U", "dbadmin", "-d", "testdb", "-f", "/seed.sql"]
+    restart: "no"

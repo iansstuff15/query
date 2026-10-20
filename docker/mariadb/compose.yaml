@@ -1,0 +1,15 @@
+# MariaDB 11.4 — mariadb://query_reader:ReaderPass1@localhost:33307/app
+name: query-mariadb
+services:
+  mariadb:
+    image: mariadb:11.4
+    environment:
+      MARIADB_ROOT_PASSWORD: AdminPass1
+      TZ: UTC
+    ports: ["33307:3306"]
+    volumes:
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 3s
+      retries: 40

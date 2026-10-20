@@ -1,0 +1,17 @@
+# Greenplum 7 (community image, trust auth) — postgresql://gpadmin@localhost:55433/postgres
+name: query-greenplum
+services:
+  greenplum:
+    image: andruche/greenplum:7
+    ports: ["55433:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "/usr/local/gpdb/bin/psql -h localhost -U gpadmin -d postgres -c 'select 1'"]
+      interval: 3s
+      retries: 40
+  seed:
+    image: andruche/greenplum:7
+    depends_on:
+      greenplum: { condition: service_healthy }
+    volumes: ["./seed.sql:/seed.sql:ro"]
+    entrypoint: ["/usr/local/gpdb/bin/psql", "-h", "greenplum", "-U", "gpadmin", "-d", "postgres", "-v", "ON_ERROR_STOP=1", "-f", "/seed.sql"]
+    restart: "no"

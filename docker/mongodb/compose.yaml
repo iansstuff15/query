@@ -1,0 +1,15 @@
+# MongoDB 8.0 — mongodb://query_reader:ReaderPass1@localhost:27018/app?authSource=app
+name: query-mongodb
+services:
+  mongodb:
+    image: mongo:8.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: AdminPass1
+    ports: ["27018:27017"]
+    volumes:
+      - ./seed.js:/docker-entrypoint-initdb.d/seed.js:ro
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "-u", "admin", "-p", "AdminPass1", "--eval", "db.adminCommand('ping')"]
+      interval: 3s
+      retries: 40

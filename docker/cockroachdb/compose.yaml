@@ -1,0 +1,18 @@
+# CockroachDB (insecure single node) — postgresql://query_reader@localhost:26257/app?sslmode=disable
+name: query-cockroachdb
+services:
+  cockroach:
+    image: cockroachdb/cockroach:latest-v25.2
+    command: start-single-node --insecure
+    ports: ["26257:26257", "28080:8080"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health?ready=1"]
+      interval: 2s
+      retries: 30
+  seed:
+    image: cockroachdb/cockroach:latest-v25.2
+    depends_on:
+      cockroach: { condition: service_healthy }
+    volumes: ["./seed.sql:/seed.sql:ro"]
+    entrypoint: ["cockroach", "sql", "--insecure", "--host=cockroach", "--file=/seed.sql"]
+    restart: "no"

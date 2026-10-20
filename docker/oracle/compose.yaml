@@ -1,0 +1,14 @@
+# Oracle Database 23ai Free — query_reader/ReaderPass1@localhost:15210/FREEPDB1
+name: query-oracle
+services:
+  oracle:
+    image: gvenzl/oracle-free:23-slim
+    environment:
+      ORACLE_PASSWORD: AdminPass1
+    ports: ["15210:1521"]
+    volumes:
+      - ./seed.sql:/container-entrypoint-initdb.d/seed.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 5s
+      retries: 60

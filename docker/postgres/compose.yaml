@@ -1,0 +1,17 @@
+# PostgreSQL 17 — postgresql://query_reader:ReaderPass1@localhost:55432/app
+name: query-postgres
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: AdminPass1
+      POSTGRES_DB: app
+      TZ: UTC
+    ports: ["55432:5432"]
+    volumes:
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d app"]
+      interval: 2s
+      retries: 30

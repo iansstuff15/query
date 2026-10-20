@@ -1,0 +1,11 @@
+# Builds docker/duckdb/data/app.duckdb with DuckDB 1.1.3 (matches the app's duckdb-swift version).
+name: query-duckdb
+services:
+  build:
+    image: python:3.12-slim
+    volumes: [".:/work"]
+    entrypoint:
+      - sh
+      - -c
+      - pip install -q duckdb==1.1.3 && mkdir -p /work/data && rm -f /work/data/app.duckdb && python3 -c "import duckdb; c = duckdb.connect('/work/data/app.duckdb'); c.execute(open('/work/seed.sql').read()); c.close(); print('built /work/data/app.duckdb')"
+    restart: "no"

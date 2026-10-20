@@ -1,0 +1,8 @@
+# Test databases for the app. Starts PostgreSQL and MySQL together:
+#   docker compose up -d --wait     # start and seed
+#   docker compose down -v          # stop and delete data
+# Each engine's setup lives in docker/<engine>/; see README.md for connection strings.
+name: query-test-dbs
+include:
+  - docker/postgres/compose.yaml
+  - docker/mysql/compose.yaml

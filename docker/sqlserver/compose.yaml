@@ -1,0 +1,23 @@
+# SQL Server 2022 (amd64 → Rosetta) — Server=localhost,14330;Database=app;User Id=query_reader;Password=ReaderPass1;Encrypt=False
+name: query-sqlserver
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: AdminPass1!
+      MSSQL_PID: Developer
+    ports: ["14330:1433"]
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P 'AdminPass1!' -Q 'SELECT 1' -b"]
+      interval: 5s
+      retries: 40
+  seed:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    platform: linux/amd64
+    depends_on:
+      sqlserver: { condition: service_healthy }
+    volumes: ["./seed.sql:/seed.sql:ro"]
+    entrypoint: ["/opt/mssql-tools18/bin/sqlcmd", "-C", "-S", "sqlserver", "-U", "sa", "-P", "AdminPass1!", "-b", "-i", "/seed.sql"]
+    restart: "no"

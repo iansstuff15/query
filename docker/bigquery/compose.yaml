@@ -1,0 +1,8 @@
+# BigQuery emulator — project query-test, endpoint http://localhost:19050 (no auth)
+name: query-bigquery
+services:
+  bigquery:
+    image: ghcr.io/goccy/bigquery-emulator:latest
+    command: ["--project=query-test", "--data-from-yaml=/data/data.json", "--port=9050"]
+    ports: ["19050:9050"]
+    volumes: ["./data.json:/data/data.json:ro"]

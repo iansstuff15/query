@@ -1,0 +1,26 @@
+# Cassandra 5.0 with password auth — cassandra://query_reader:ReaderPass1@localhost:19042/app
+name: query-cassandra
+services:
+  cassandra:
+    image: cassandra:5.0
+    environment:
+      MAX_HEAP_SIZE: 1G
+      HEAP_NEWSIZE: 200M
+    entrypoint:
+      - bash
+      - -c
+      - >
+        sed -i -e 's/AllowAllAuthenticator/PasswordAuthenticator/' -e 's/AllowAllAuthorizer/CassandraAuthorizer/'
+        /etc/cassandra/cassandra.yaml && exec docker-entrypoint.sh cassandra -f
+    ports: ["19042:9042"]
+    healthcheck:
+      test: ["CMD-SHELL", "cqlsh -u cassandra -p cassandra -e 'describe keyspaces'"]
+      interval: 5s
+      retries: 60
+  seed:
+    image: cassandra:5.0
+    depends_on:
+      cassandra: { condition: service_healthy }
+    volumes: ["./seed.cql:/seed.cql:ro"]
+    entrypoint: ["cqlsh", "cassandra", "-u", "cassandra", "-p", "cassandra", "-f", "/seed.cql"]
+    restart: "no"

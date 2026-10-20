@@ -1,0 +1,253 @@
+{
+ "customers": [
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "1"
+     },
+     "email": {
+      "S": "ada.lovelace@example.com"
+     },
+     "full_name": {
+      "S": "Ada Lovelace"
+     },
+     "country": {
+      "S": "GB"
+     },
+     "created_at": {
+      "S": "2026-01-10 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "2"
+     },
+     "email": {
+      "S": "grace.hopper@mail.test"
+     },
+     "full_name": {
+      "S": "Grace Hopper"
+     },
+     "country": {
+      "S": "US"
+     },
+     "created_at": {
+      "S": "2026-02-11 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "3"
+     },
+     "email": {
+      "S": "alan.turing@mail.test"
+     },
+     "full_name": {
+      "S": "Alan Turing"
+     },
+     "country": {
+      "S": "GB"
+     },
+     "created_at": {
+      "S": "2026-03-12 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "4"
+     },
+     "email": {
+      "S": "katherine.johnson@example.com"
+     },
+     "full_name": {
+      "S": "Katherine Johnson"
+     },
+     "country": {
+      "S": "US"
+     },
+     "created_at": {
+      "S": "2026-04-13 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "5"
+     },
+     "email": {
+      "S": "linus.torvalds@mail.test"
+     },
+     "full_name": {
+      "S": "Linus Torvalds"
+     },
+     "country": {
+      "S": "FI"
+     },
+     "created_at": {
+      "S": "2026-05-14 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "6"
+     },
+     "email": {
+      "S": "margaret.hamilton@mail.test"
+     },
+     "full_name": {
+      "S": "Margaret Hamilton"
+     },
+     "country": {
+      "S": "US"
+     },
+     "created_at": {
+      "S": "2026-06-15 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "7"
+     },
+     "email": {
+      "S": "dennis.ritchie@example.com"
+     },
+     "full_name": {
+      "S": "Dennis Ritchie"
+     },
+     "created_at": {
+      "S": "2026-07-16 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "8"
+     },
+     "email": {
+      "S": "barbara.liskov@mail.test"
+     },
+     "full_name": {
+      "S": "Barbara Liskov"
+     },
+     "country": {
+      "S": "US"
+     },
+     "created_at": {
+      "S": "2026-08-17 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "9"
+     },
+     "email": {
+      "S": "ken.thompson@mail.test"
+     },
+     "full_name": {
+      "S": "Ken Thompson"
+     },
+     "country": {
+      "S": "US"
+     },
+     "created_at": {
+      "S": "2026-09-18 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "10"
+     },
+     "email": {
+      "S": "radia.perlman@example.com"
+     },
+     "full_name": {
+      "S": "Radia Perlman"
+     },
+     "country": {
+      "S": "US"
+     },
+     "created_at": {
+      "S": "2026-01-19 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "11"
+     },
+     "email": {
+      "S": "edsger.dijkstra@mail.test"
+     },
+     "full_name": {
+      "S": "Edsger Dijkstra"
+     },
+     "country": {
+      "S": "NL"
+     },
+     "created_at": {
+      "S": "2026-02-10 09:00:00"
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "12"
+     },
+     "email": {
+      "S": "frances.allen@mail.test"
+     },
+     "full_name": {
+      "S": "Frances Allen"
+     },
+     "country": {
+      "S": "US"
+     },
+     "created_at": {
+      "S": "2026-03-11 09:00:00"
+     }
+    }
+   }
+  }
+ ]
+}

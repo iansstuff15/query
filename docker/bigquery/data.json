@@ -1,0 +1,361 @@
+{
+ "projects": [
+  {
+   "id": "query-test",
+   "datasets": [
+    {
+     "id": "app",
+     "tables": [
+      {
+       "id": "customers",
+       "columns": [
+        {
+         "name": "id",
+         "type": "INTEGER"
+        },
+        {
+         "name": "email",
+         "type": "STRING"
+        },
+        {
+         "name": "full_name",
+         "type": "STRING"
+        },
+        {
+         "name": "country",
+         "type": "STRING"
+        },
+        {
+         "name": "created_at",
+         "type": "TIMESTAMP"
+        }
+       ],
+       "data": [
+        {
+         "id": 1,
+         "email": "ada.lovelace@example.com",
+         "full_name": "Ada Lovelace",
+         "country": "GB",
+         "created_at": "2026-01-10T09:00:00Z"
+        },
+        {
+         "id": 2,
+         "email": "grace.hopper@mail.test",
+         "full_name": "Grace Hopper",
+         "country": "US",
+         "created_at": "2026-02-11T09:00:00Z"
+        },
+        {
+         "id": 3,
+         "email": "alan.turing@mail.test",
+         "full_name": "Alan Turing",
+         "country": "GB",
+         "created_at": "2026-03-12T09:00:00Z"
+        },
+        {
+         "id": 4,
+         "email": "katherine.johnson@example.com",
+         "full_name": "Katherine Johnson",
+         "country": "US",
+         "created_at": "2026-04-13T09:00:00Z"
+        },
+        {
+         "id": 5,
+         "email": "linus.torvalds@mail.test",
+         "full_name": "Linus Torvalds",
+         "country": "FI",
+         "created_at": "2026-05-14T09:00:00Z"
+        },
+        {
+         "id": 6,
+         "email": "margaret.hamilton@mail.test",
+         "full_name": "Margaret Hamilton",
+         "country": "US",
+         "created_at": "2026-06-15T09:00:00Z"
+        },
+        {
+         "id": 7,
+         "email": "dennis.ritchie@example.com",
+         "full_name": "Dennis Ritchie",
+         "country": null,
+         "created_at": "2026-07-16T09:00:00Z"
+        },
+        {
+         "id": 8,
+         "email": "barbara.liskov@mail.test",
+         "full_name": "Barbara Liskov",
+         "country": "US",
+         "created_at": "2026-08-17T09:00:00Z"
+        },
+        {
+         "id": 9,
+         "email": "ken.thompson@mail.test",
+         "full_name": "Ken Thompson",
+         "country": "US",
+         "created_at": "2026-09-18T09:00:00Z"
+        },
+        {
+         "id": 10,
+         "email": "radia.perlman@example.com",
+         "full_name": "Radia Perlman",
+         "country": "US",
+         "created_at": "2026-01-19T09:00:00Z"
+        },
+        {
+         "id": 11,
+         "email": "edsger.dijkstra@mail.test",
+         "full_name": "Edsger Dijkstra",
+         "country": "NL",
+         "created_at": "2026-02-10T09:00:00Z"
+        },
+        {
+         "id": 12,
+         "email": "frances.allen@mail.test",
+         "full_name": "Frances Allen",
+         "country": "US",
+         "created_at": "2026-03-11T09:00:00Z"
+        }
+       ]
+      },
+      {
+       "id": "products",
+       "columns": [
+        {
+         "name": "id",
+         "type": "INTEGER"
+        },
+        {
+         "name": "sku",
+         "type": "STRING"
+        },
+        {
+         "name": "name",
+         "type": "STRING"
+        },
+        {
+         "name": "price",
+         "type": "NUMERIC"
+        },
+        {
+         "name": "in_stock",
+         "type": "BOOLEAN"
+        }
+       ],
+       "data": [
+        {
+         "id": 1,
+         "sku": "KB-001",
+         "name": "Mechanical Keyboard",
+         "price": "129.00",
+         "in_stock": true
+        },
+        {
+         "id": 2,
+         "sku": "MS-002",
+         "name": "Wireless Mouse",
+         "price": "49.50",
+         "in_stock": true
+        },
+        {
+         "id": 3,
+         "sku": "MN-003",
+         "name": "27-inch Monitor",
+         "price": "329.99",
+         "in_stock": false
+        },
+        {
+         "id": 4,
+         "sku": "HB-004",
+         "name": "USB-C Hub",
+         "price": "39.00",
+         "in_stock": true
+        },
+        {
+         "id": 5,
+         "sku": "LS-005",
+         "name": "Laptop Stand",
+         "price": "59.95",
+         "in_stock": true
+        },
+        {
+         "id": 6,
+         "sku": "HP-006",
+         "name": "Noise-cancelling Headphones",
+         "price": "249.00",
+         "in_stock": false
+        }
+       ]
+      },
+      {
+       "id": "orders",
+       "columns": [
+        {
+         "name": "id",
+         "type": "INTEGER"
+        },
+        {
+         "name": "customer_id",
+         "type": "INTEGER"
+        },
+        {
+         "name": "status",
+         "type": "STRING"
+        },
+        {
+         "name": "total",
+         "type": "NUMERIC"
+        },
+        {
+         "name": "ordered_at",
+         "type": "TIMESTAMP"
+        }
+       ],
+       "data": [
+        {
+         "id": 1,
+         "customer_id": 2,
+         "status": "pending",
+         "total": "12.50",
+         "ordered_at": "2026-02-02T12:00:00Z"
+        },
+        {
+         "id": 2,
+         "customer_id": 3,
+         "status": "refunded",
+         "total": "25.00",
+         "ordered_at": "2026-03-03T12:00:00Z"
+        },
+        {
+         "id": 3,
+         "customer_id": 4,
+         "status": "shipped",
+         "total": "37.50",
+         "ordered_at": "2026-04-04T12:00:00Z"
+        },
+        {
+         "id": 4,
+         "customer_id": 5,
+         "status": "paid",
+         "total": "50.00",
+         "ordered_at": "2026-05-05T12:00:00Z"
+        },
+        {
+         "id": 5,
+         "customer_id": 6,
+         "status": "pending",
+         "total": "62.50",
+         "ordered_at": "2026-06-06T12:00:00Z"
+        },
+        {
+         "id": 6,
+         "customer_id": 7,
+         "status": "refunded",
+         "total": "75.00",
+         "ordered_at": "2026-07-07T12:00:00Z"
+        },
+        {
+         "id": 7,
+         "customer_id": 8,
+         "status": "shipped",
+         "total": "87.50",
+         "ordered_at": "2026-08-08T12:00:00Z"
+        },
+        {
+         "id": 8,
+         "customer_id": 9,
+         "status": "paid",
+         "total": "100.00",
+         "ordered_at": "2026-09-09T12:00:00Z"
+        },
+        {
+         "id": 9,
+         "customer_id": 10,
+         "status": "pending",
+         "total": "112.50",
+         "ordered_at": "2026-01-10T12:00:00Z"
+        },
+        {
+         "id": 10,
+         "customer_id": 11,
+         "status": "refunded",
+         "total": "125.00",
+         "ordered_at": "2026-02-11T12:00:00Z"
+        },
+        {
+         "id": 11,
+         "customer_id": 12,
+         "status": "shipped",
+         "total": "137.50",
+         "ordered_at": "2026-03-12T12:00:00Z"
+        },
+        {
+         "id": 12,
+         "customer_id": 1,
+         "status": "paid",
+         "total": "150.00",
+         "ordered_at": "2026-04-13T12:00:00Z"
+        },
+        {
+         "id": 13,
+         "customer_id": 2,
+         "status": "pending",
+         "total": "162.50",
+         "ordered_at": "2026-05-14T12:00:00Z"
+        },
+        {
+         "id": 14,
+         "customer_id": 3,
+         "status": "refunded",
+         "total": "175.00",
+         "ordered_at": "2026-06-15T12:00:00Z"
+        },
+        {
+         "id": 15,
+         "customer_id": 4,
+         "status": "shipped",
+         "total": "187.50",
+         "ordered_at": "2026-07-16T12:00:00Z"
+        },
+        {
+         "id": 16,
+         "customer_id": 5,
+         "status": "paid",
+         "total": "200.00",
+         "ordered_at": "2026-08-17T12:00:00Z"
+        },
+        {
+         "id": 17,
+         "customer_id": 6,
+         "status": "pending",
+         "total": "212.50",
+         "ordered_at": "2026-09-18T12:00:00Z"
+        },
+        {
+         "id": 18,
+         "customer_id": 7,
+         "status": "refunded",
+         "total": "225.00",
+         "ordered_at": "2026-01-19T12:00:00Z"
+        },
+        {
+         "id": 19,
+         "customer_id": 8,
+         "status": "shipped",
+         "total": "237.50",
+         "ordered_at": "2026-02-20T12:00:00Z"
+        },
+        {
+         "id": 20,
+         "customer_id": 9,
+         "status": "paid",
+         "total": "250.00",
+         "ordered_at": "2026-03-21T12:00:00Z"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

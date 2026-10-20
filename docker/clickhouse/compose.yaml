@@ -1,0 +1,16 @@
+# ClickHouse 25.8 (HTTP 8123) — clickhouse://query_reader:ReaderPass1@localhost:18123/app
+name: query-clickhouse
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:25.8
+    environment:
+      CLICKHOUSE_USER: admin
+      CLICKHOUSE_PASSWORD: AdminPass1
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "1"
+    ports: ["18123:8123"]
+    volumes:
+      - ./seed.sql:/docker-entrypoint-initdb.d/seed.sql:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8123/ping"]
+      interval: 2s
+      retries: 30

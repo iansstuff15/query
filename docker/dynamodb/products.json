@@ -1,0 +1,130 @@
+{
+ "products": [
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "1"
+     },
+     "sku": {
+      "S": "KB-001"
+     },
+     "name": {
+      "S": "Mechanical Keyboard"
+     },
+     "price": {
+      "N": "129.00"
+     },
+     "in_stock": {
+      "BOOL": true
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "2"
+     },
+     "sku": {
+      "S": "MS-002"
+     },
+     "name": {
+      "S": "Wireless Mouse"
+     },
+     "price": {
+      "N": "49.50"
+     },
+     "in_stock": {
+      "BOOL": true
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "3"
+     },
+     "sku": {
+      "S": "MN-003"
+     },
+     "name": {
+      "S": "27-inch Monitor"
+     },
+     "price": {
+      "N": "329.99"
+     },
+     "in_stock": {
+      "BOOL": false
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "4"
+     },
+     "sku": {
+      "S": "HB-004"
+     },
+     "name": {
+      "S": "USB-C Hub"
+     },
+     "price": {
+      "N": "39.00"
+     },
+     "in_stock": {
+      "BOOL": true
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "5"
+     },
+     "sku": {
+      "S": "LS-005"
+     },
+     "name": {
+      "S": "Laptop Stand"
+     },
+     "price": {
+      "N": "59.95"
+     },
+     "in_stock": {
+      "BOOL": true
+     }
+    }
+   }
+  },
+  {
+   "PutRequest": {
+    "Item": {
+     "id": {
+      "N": "6"
+     },
+     "sku": {
+      "S": "HP-006"
+     },
+     "name": {
+      "S": "Noise-cancelling Headphones"
+     },
+     "price": {
+      "N": "249.00"
+     },
+     "in_stock": {
+      "BOOL": false
+     }
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+  "role": {
+    "cluster": [
+      "monitor"
+    ],
+    "indices": [
+      {
+        "names": [
+          "customers",
+          "products",
+          "orders"
+        ],
+        "privileges": [
+          "read",
+          "view_index_metadata"
+        ]
+      }
+    ]
+  },
+  "users": {
+    "query_reader": {
+      "password": "ReaderPass1",
+      "roles": [
+        "query_read"
+      ]
+    },
+    "query_writer": {
+      "password": "WriterPass1",
+      "roles": [
+        "query_read",
+        "query_write"
+      ]
+    }
+  }
+}

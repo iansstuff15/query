@@ -1,0 +1,9 @@
+# Builds docker/sqlite/data/app.sqlite from seed.sql (open it from the app's file picker).
+name: query-sqlite
+services:
+  build:
+    image: keinos/sqlite3:latest
+    user: root
+    volumes: [".:/work"]
+    entrypoint: ["sh", "-c", "mkdir -p /work/data && rm -f /work/data/app.sqlite && sqlite3 /work/data/app.sqlite < /work/seed.sql && echo built /work/data/app.sqlite"]
+    restart: "no"
