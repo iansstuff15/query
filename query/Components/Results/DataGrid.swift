@@ -13,49 +13,56 @@ struct DataGrid: View {
     @FocusState private var isFocused: Bool
 
     var body: some View {
-        let widths = ColumnWidths.widths(
+        let fitted = ColumnWidths.widths(
             for: result, characterWidth: Self.characterWidth, padding: Theme.Spacing.s * 2 + Theme.Spacing.xs,
             range: Theme.Layout.dataGridMinColumnWidth...Theme.Layout.dataGridMaxColumnWidth
         )
-        ScrollViewReader { proxy in
-            ScrollView([.horizontal, .vertical]) {
-                LazyVStack(alignment: .leading, spacing: 0, pinnedViews: [.sectionHeaders]) {
-                    Section {
-                        ForEach(result.rows) { row in
-                            // A button, so a click always selects (no gesture recognition to
-                            // compete with scrolling or focus).
-                            Button { select(row.id) } label: {
-                                DataGridRow(
-                                    row: row, columns: result.columns, widths: widths,
-                                    isSelected: row.id == selection, isHovered: row.id == hoveredRowID
-                                )
+        // Fill the panel like a native table: content starts at the top leading corner (a
+        // two-way scroll view would otherwise center narrow content), and spare width is shared
+        // among the columns.
+        GeometryReader { viewport in
+            let widths = ColumnWidths.filling(fitted, to: viewport.size.width - Theme.Spacing.xs * 2)
+            ScrollViewReader { proxy in
+                ScrollView([.horizontal, .vertical]) {
+                    LazyVStack(alignment: .leading, spacing: 0, pinnedViews: [.sectionHeaders]) {
+                        Section {
+                            ForEach(result.rows) { row in
+                                // A button, so a click always selects (no gesture recognition to
+                                // compete with scrolling or focus).
+                                Button { select(row.id) } label: {
+                                    DataGridRow(
+                                        row: row, columns: result.columns, widths: widths,
+                                        isSelected: row.id == selection, isHovered: row.id == hoveredRowID
+                                    )
+                                }
+                                .buttonStyle(.plain)
+                                .id(row.id)
+                                .onHover { inside in
+                                    if inside { hoveredRowID = row.id } else if hoveredRowID == row.id { hoveredRowID = nil }
+                                }
+                                .accessibilityElement(children: .combine)
+                                .accessibilityAddTraits(row.id == selection ? [.isButton, .isSelected] : .isButton)
+                                .accessibilityHint(L10n.rowSelectHint)
+                                .accessibilityAction { select(row.id) }
+                                .accessibilityIdentifier("\(identifier).row.\(row.id)")
                             }
-                            .buttonStyle(.plain)
-                            .id(row.id)
-                            .onHover { inside in
-                                if inside { hoveredRowID = row.id } else if hoveredRowID == row.id { hoveredRowID = nil }
-                            }
-                            .accessibilityElement(children: .combine)
-                            .accessibilityAddTraits(row.id == selection ? [.isButton, .isSelected] : .isButton)
-                            .accessibilityHint(L10n.rowSelectHint)
-                            .accessibilityAction { select(row.id) }
-                            .accessibilityIdentifier("\(identifier).row.\(row.id)")
+                        } header: {
+                            header(widths: widths)
                         }
-                    } header: {
-                        header(widths: widths)
                     }
+                    .padding(.horizontal, Theme.Spacing.xs)
+                    .frame(minWidth: viewport.size.width, minHeight: viewport.size.height, alignment: .topLeading)
                 }
-                .padding(.horizontal, Theme.Spacing.xs)
-            }
-            // Focus only for keyboard input, so clicks go to the rows instead of focusing the grid.
-            .focusable(interactions: .edit)
-            .focused($isFocused)
-            .focusEffectDisabled()
-            .onKeyPress(.downArrow) { move(by: 1, proxy: proxy) }
-            .onKeyPress(.upArrow) { move(by: -1, proxy: proxy) }
-            .onKeyPress(.escape) {
-                selection = nil
-                return .handled
+                // Focus only for keyboard input, so clicks go to the rows instead of focusing the grid.
+                .focusable(interactions: .edit)
+                .focused($isFocused)
+                .focusEffectDisabled()
+                .onKeyPress(.downArrow) { move(by: 1, proxy: proxy) }
+                .onKeyPress(.upArrow) { move(by: -1, proxy: proxy) }
+                .onKeyPress(.escape) {
+                    selection = nil
+                    return .handled
+                }
             }
         }
         .accessibilityElement(children: .contain)

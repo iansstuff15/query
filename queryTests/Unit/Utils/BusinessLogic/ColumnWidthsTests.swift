@@ -23,4 +23,13 @@ struct ColumnWidthsTests {
         let rows: [[String?]] = [["a"], ["a"], ["a much longer value"]]
         #expect(ColumnWidths.widths(for: QueryResult(columnNames: ["c"], values: rows), characterWidth: 1, padding: 0, range: 0...1_000, sampleSize: 2) == [1])
     }
+
+    @Test func narrowColumnsStretchToFillTheView() {
+        #expect(ColumnWidths.filling([100, 300], to: 800) == [200, 600])
+    }
+
+    @Test func wideColumnsAreLeftToScroll() {
+        #expect(ColumnWidths.filling([500, 500], to: 800) == [500, 500])
+        #expect(ColumnWidths.filling([], to: 800) == [])
+    }
 }

@@ -14,6 +14,11 @@ is a release, each `### emoji Heading` a category, and each `- item` a change. I
 | 🗑️ | Removed |
 | 🛠️ | Developer Tools |
 
+## [0.12.0] - 2026-10-21
+
+### 🐛 Bug Fixes
+- Table and query results fill the center panel again, starting at the top left, instead of sitting compressed in the middle. Spare width is shared among the columns.
+
 ## [0.11.2] - 2026-10-21
 
 ### 🐛 Bug Fixes
