@@ -1,0 +1,60 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Xcode user state
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Build output
+build/
+DerivedData/
+*.xcresult
+test-results/
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.pins
+# Package.resolved is committed so dependency versions stay reproducible
+
+# CocoaPods / Carthage (if ever added)
+Pods/
+Carthage/Build/
+
+# Secrets — never commit real values (see Claude.md "Secrets")
+*.xcconfig.local
+Secrets.xcconfig
+.env
+.env.*
+!.env.example
+GoogleService-Info.plist
+
+# Code coverage
+*.profdata
+*.profraw
+*.gcda
+*.gcno
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Generated test database files (docker/sqlite, docker/duckdb)
+docker/*/data/
