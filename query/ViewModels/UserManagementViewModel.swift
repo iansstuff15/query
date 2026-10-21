@@ -43,8 +43,12 @@ final class UserManagementViewModel {
     private let manager: (any UserManaging)?
     private let client: any DatabaseClient
 
-    init(client: any DatabaseClient) {
+    /// The user to select once the list loads (previews, README screenshots).
+    private let initialUserID: DatabaseUser.ID?
+
+    init(client: any DatabaseClient, selecting initialUserID: DatabaseUser.ID? = nil) {
         self.client = client
+        self.initialUserID = initialUserID
         manager = (client as? any UserManaging).flatMap { $0.userManagement == nil ? nil : $0 }
     }
 
@@ -74,6 +78,9 @@ final class UserManagementViewModel {
             async let catalog = client.listObjects()
             usersState = .loaded(try await users)
             objects = (try? await catalog)?.filter(\.kind.holdsRows) ?? []
+            if selection == nil, let initialUserID, self.users.contains(where: { $0.id == initialUserID }) {
+                selection = .user(initialUserID)
+            }
         } catch {
             AppLog.database.error("Listing users failed: \(String(describing: error), privacy: .private)")
             usersState = .failed(error)

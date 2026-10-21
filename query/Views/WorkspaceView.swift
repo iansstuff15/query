@@ -20,13 +20,21 @@ struct WorkspaceView: View {
     /// Info.plist toggles for the SQL console, its history and row editing.
     private let flags: FeatureFlags
 
-    init(session: ConnectionSession, history: any SQLHistoryStore, flags: FeatureFlags = .current, onDisconnect: @escaping () -> Void) {
+    /// The object to open when nothing is restored, and SQL to start the editor with (previews,
+    /// README screenshots).
+    private let initialObjectID: DatabaseObject.ID?
+
+    init(
+        session: ConnectionSession, history: any SQLHistoryStore, flags: FeatureFlags = .current,
+        initialObjectID: DatabaseObject.ID? = nil, initialSQL: String = "", onDisconnect: @escaping () -> Void
+    ) {
         self.flags = flags
+        self.initialObjectID = initialObjectID
         self.session = session
         self.onDisconnect = onDisconnect
         _model = State(initialValue: WorkspaceViewModel(client: session.client))
         _console = State(initialValue: SQLConsoleViewModel(
-            client: session.client, connectionID: session.id, history: history, recordsHistory: flags.sqlHistory
+            client: session.client, connectionID: session.id, history: history, text: initialSQL, recordsHistory: flags.sqlHistory
         ))
     }
 
@@ -76,7 +84,7 @@ struct WorkspaceView: View {
         .focusedSceneValue(\.workspaceActions, actions)
         .navigationTitle(Text(verbatim: session.name))
         .navigationSubtitle(Text(verbatim: EngineCatalog.descriptor(for: session.engine).displayName))
-        .task { await model.load(restoringSelection: storedSelection) }
+        .task { await model.load(restoringSelection: storedSelection ?? initialObjectID) }
         .onChange(of: model.selectedObjectID) { _, selection in
             if let selection { storedSelection = selection }
         }

@@ -7,8 +7,8 @@ struct UserManagementView: View {
     @State private var pendingDeletion: DatabaseUser?
     private let connectionName: String
 
-    init(session: ConnectionSession) {
-        _model = State(initialValue: UserManagementViewModel(client: session.client))
+    init(session: ConnectionSession, selecting userID: DatabaseUser.ID? = nil) {
+        _model = State(initialValue: UserManagementViewModel(client: session.client, selecting: userID))
         connectionName = session.name
     }
 
