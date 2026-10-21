@@ -10,16 +10,16 @@ struct SettingsView: View {
         TabView {
             if flags.languageSetting {
                 LanguageSettingsView()
-                    .tabItem { Text(L10n.languageSection) }
+                    .tabItem { Label(L10n.languageSection, systemImage: "globe") }
             }
             if flags.themes {
                 DisplaySettingsView()
-                    .tabItem { Text(L10n.displaySection) }
+                    .tabItem { Label(L10n.displaySection, systemImage: "paintpalette") }
             }
             StoreSettingsView(switcher: switcher, offersKeychain: flags.keychainStore)
-                .tabItem { Text(L10n.storeSection) }
+                .tabItem { Label(L10n.storeSection, systemImage: "lock.rectangle.stack") }
             SearchSettingsView()
-                .tabItem { Text(L10n.search) }
+                .tabItem { Label(L10n.search, systemImage: "magnifyingglass") }
         }
         .frame(width: Theme.Layout.settingsWidth)
     }

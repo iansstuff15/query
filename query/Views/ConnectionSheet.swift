@@ -77,7 +77,7 @@ struct ConnectionSheet: View {
         HStack {
             ConnectionStatusView(state: model.testState)
             Spacer()
-            Button(role: .cancel) { dismiss() } label: { Text(L10n.cancel) }
+            Button(role: .cancel) { dismiss() } label: { Label(L10n.cancel, systemImage: "xmark") }
                 .keyboardShortcut(.cancelAction)
                 .accessibilityIdentifier(AccessibilityID.Connection.cancel)
             Button(action: model.save) {

@@ -33,7 +33,7 @@ struct ExportConnectionsSheet: View {
             .formStyle(.grouped)
             HStack {
                 Spacer()
-                Button(role: .cancel) { dismiss() } label: { Text(L10n.cancel) }
+                Button(role: .cancel) { dismiss() } label: { Label(L10n.cancel, systemImage: "xmark") }
                     .keyboardShortcut(.cancelAction)
                 Button {
                     isExporting = model.prepareExport()

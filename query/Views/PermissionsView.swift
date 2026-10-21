@@ -139,7 +139,7 @@ struct PermissionsView: View {
             .font(Theme.Typography.footer)
             .accessibilityIdentifier(AccessibilityID.Users.permissionsStatus)
             Spacer()
-            Button(action: model.revertPermissions) { Text(L10n.rowRevert) }
+            Button(action: model.revertPermissions) { Label(L10n.rowRevert, systemImage: "arrow.uturn.backward") }
                 .buttonStyle(.glass)
                 .disabled(!model.hasPermissionChanges)
                 .accessibilityIdentifier(AccessibilityID.Users.revertPermissions)

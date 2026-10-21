@@ -14,6 +14,13 @@ is a release, each `### emoji Heading` a category, and each `- item` a change. I
 | 🗑️ | Removed |
 | 🛠️ | Developer Tools |
 
+## [0.14.0] - 2026-10-21
+
+### 🎨 UI Changes
+- Settings tabs (Language, Display, Store, Search) and the right panel's Editor / History / Row tabs show icons.
+- Cancel, Revert and Clear History buttons have icons like the rest.
+- The **Choose a Database** header has a solid background, so the engine grid never shows through it.
+
 ## [0.13.0] - 2026-10-21
 
 ### ✨ New Features

@@ -29,7 +29,7 @@ The Xcode project lives at `../query.xcodeproj`, and app sources live in this `q
 - Each Swift file should declare one primary type. If several types are logically related, group them in a subdirectory inside `Components`.
 - Whenever data is being fetched for a view, show a skeleton/placeholder state (e.g. `.redacted(reason: .placeholder)` with a shimmer modifier from `Animations`), and model loading as an enum such as `LoadState<T> { idle, loading, loaded(T), failed(Error) }`.
 - Buttons and navigation items should use `Label` with an SF Symbol by default unless told to omit it.
-- Secondary navigation (e.g. settings or about lists and footers) shows text only, without icons.
+- Navigation shows an SF Symbol with its text too: Settings tabs, the right panel's tabs and the center panel's tabs. Only links in footers and about lists are text alone. Confirmation-dialog buttons are text, as macOS shows them.
 - Do not show alerts, toasts, or user-facing logs when errors come from API calls, missing required config values, or missing secrets. Degrade gracefully (empty or fallback state) and log internally through `os.Logger` with privacy annotations (`\(value, privacy: .private)`). Never use `print`.
 - All interactive and meaningful views need accessibility support: `accessibilityLabel`, `accessibilityHint`, `accessibilityIdentifier` (also used by UI tests), and correct traits. Images that are only decorative use `accessibilityHidden(true)`.
 - Strings shown to users go in a String Catalog (`Localizable.xcstrings`). Do not hardcode user-facing text.

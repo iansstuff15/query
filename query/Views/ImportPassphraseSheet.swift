@@ -17,7 +17,7 @@ struct ImportPassphraseSheet: View {
                 .foregroundStyle(.secondary)
             HStack {
                 Spacer()
-                Button(role: .cancel, action: model.cancelImport) { Text(L10n.cancel) }
+                Button(role: .cancel, action: model.cancelImport) { Label(L10n.cancel, systemImage: "xmark") }
                     .keyboardShortcut(.cancelAction)
                 Button(action: model.submitImportPassphrase) { Label(L10n.importAction, systemImage: "square.and.arrow.down") }
                     .buttonStyle(.glassProminent)

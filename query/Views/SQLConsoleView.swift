@@ -80,21 +80,24 @@ struct SQLConsoleView: View {
     }
 
     private var tabPicker: some View {
-        Picker(selection: $tab) {
-            ForEach(tabs) { tab in
-                switch tab {
-                case .editor: Text(L10n.sqlEditorTab).tag(tab)
-                case .history: Text(L10n.sqlHistoryTab).tag(tab)
-                case .row: Text(L10n.rowTab).tag(tab)
-                }
-            }
-        } label: {
-            Text(L10n.sqlConsole)
+        PanelTabBar(tabs: tabs, selection: $tab, title: Self.title(for:), systemImage: Self.systemImage(for:), identifier: AccessibilityID.SQLConsole.tabs)
+            .padding(Theme.Spacing.s)
+    }
+
+    private static func title(for tab: SQLConsoleTab) -> LocalizedStringKey {
+        switch tab {
+        case .editor: L10n.sqlEditorTab
+        case .history: L10n.sqlHistoryTab
+        case .row: L10n.rowTab
         }
-        .pickerStyle(.segmented)
-        .labelsHidden()
-        .padding(Theme.Spacing.s)
-        .accessibilityIdentifier(AccessibilityID.SQLConsole.tabs)
+    }
+
+    private static func systemImage(for tab: SQLConsoleTab) -> String {
+        switch tab {
+        case .editor: "chevron.left.forwardslash.chevron.right"
+        case .history: "clock.arrow.circlepath"
+        case .row: "list.bullet.rectangle"
+        }
     }
 
     @ViewBuilder
@@ -126,7 +129,7 @@ struct SQLConsoleView: View {
                 HStack {
                     Spacer()
                     Button(role: .destructive, action: model.clearHistory) {
-                        Text(L10n.clearHistory)
+                        Label(L10n.clearHistory, systemImage: "trash")
                     }
                     .buttonStyle(.glass)
                     .help(L10n.clearHistoryHint)

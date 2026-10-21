@@ -57,7 +57,7 @@ struct RowEditorView: View {
             status
             Spacer(minLength: 0)
             Button(action: model.revert) {
-                Text(L10n.rowRevert)
+                Label(L10n.rowRevert, systemImage: "arrow.uturn.backward")
             }
             .buttonStyle(.glass)
             .disabled(!model.hasChanges || model.saveState == .saving)
