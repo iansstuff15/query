@@ -25,18 +25,23 @@ struct WelcomeView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
-                engineGrid
-                TransferStatusText(status: transfer.status)
-                    .foregroundStyle(.secondary)
+        // A solid header above the grid (a `safeAreaBar`'s scroll edge effect drew over it).
+        VStack(spacing: 0) {
+            header
+                .solidBarBackground()
+                .overlay(alignment: .bottom) { Divider() }
+                .zIndex(1)
+            ScrollView {
+                VStack(alignment: .leading, spacing: Theme.Spacing.xl) {
+                    engineGrid
+                    TransferStatusText(status: transfer.status)
+                        .foregroundStyle(.secondary)
+                }
+                .padding(Theme.Spacing.xl)
+                .frame(maxWidth: Theme.Layout.welcomeMaxWidth)
+                .frame(maxWidth: .infinity)
             }
-            .padding(Theme.Spacing.xl)
-            .frame(maxWidth: Theme.Layout.welcomeMaxWidth)
-            .frame(maxWidth: .infinity)
         }
-        // The header floats above the grid; tiles scroll beneath it under the scroll edge effect.
-        .safeAreaBar(edge: .top) { header }
         .inspector(isPresented: $isRecentShown) {
             recentColumn
                 .inspectorColumnWidth(min: Theme.Layout.recentColumnMinWidth, ideal: Theme.Layout.recentColumnIdealWidth)
